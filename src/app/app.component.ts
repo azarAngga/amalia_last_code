@@ -22,6 +22,7 @@ import { ResumePage } from '../pages/resume/resume';
 //import { MitraPage } from '../pages/mitra/mitra';
 //import { SignaturePage } from '../pages/signature/signature';
 import { BaPage } from '../pages/ba/ba';
+import { MaterialPage } from '../pages/material/material';
 
 @Component({
   templateUrl: 'app.html'
@@ -70,13 +71,13 @@ export class MyApp {
             ];
               console.log('tampil', val);
               //this.rootPage = FotoPage;
-              this.rootPage = PemakaianPage;
+              this.rootPage = MaterialPage;
               //this.rootPage = Pemakaian4Page;
           }else{
               console.log('login', val);
               //this.rootPage = FotoPage;
               // this.rootPage = LoginPage;
-              this.rootPage = LoginPage;
+              this.rootPage = MaterialPage;
           }
     });
   }

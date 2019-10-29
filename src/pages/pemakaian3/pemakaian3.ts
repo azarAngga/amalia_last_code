@@ -2,6 +2,8 @@ import { Component,ViewChild,Renderer2 } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Pemakaian4Page} from'../pemakaian4/pemakaian4';
+import {  MaterialPage } from'../material/material';
+import { FotoPage} from'../foto/foto';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
 import * as $ from 'jquery';
@@ -117,7 +119,6 @@ export class Pemakaian3Page {
 
 
   ionViewDidLoad() {
-    
     console.log('ionViewDidLoad Pemakaian3Page');
   }
 
@@ -142,17 +143,16 @@ export class Pemakaian3Page {
   }
 
   checkPaket(data_var){
-    var data_3 = JSON.stringify(data_var);
+    var data_2 = JSON.stringify(data_var);
 
-    console.log(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_3);
-    this.http.get(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_3)
+    console.log(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_2);
+    this.http.get(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_2)
       .map(res => res.json())
       .subscribe(data => {
 
         if(data.status == "ok"){
-          this.storage.set('data3',data_var);
-          this.navCtrl.push(Pemakaian4Page);
-          //alert(data.bundling);
+          this.storage.set('data2',data_var);
+          this.navCtrl.push(MaterialPage);
         }else{
           this.psb = "0";
           this.migrasi = "0";
@@ -174,7 +174,7 @@ export class Pemakaian3Page {
           no++;
         }
     }
-        var data3 = {
+        var data2 = {
             sn_ont:this.sn_ont,
             sn_modem:this.sn_modem,
             modem:this.modem,
@@ -193,7 +193,7 @@ export class Pemakaian3Page {
             other_speed:this.speed_other,
             stb:stb
           }
-          this.checkPaket(data3);
+          this.checkPaket(data2);
            
   }
 

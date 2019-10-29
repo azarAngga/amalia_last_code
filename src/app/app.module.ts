@@ -21,6 +21,7 @@ import { UriProvider } from '../providers/uri/uri';
 import { GoogleMaps } from '@ionic-native/google-maps';
 
 
+import { MaterialPage } from '../pages/material/material';
 import { MapPage } from '../pages/map/map';
 import { ResumePage } from '../pages/resume/resume';
 import { HomePage } from '../pages/home/home';
@@ -60,6 +61,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     FotoPage,
     Pemakaian4Page,
     BaPage,
+    MaterialPage,
     ListPage,
     LoginPage,
     ChoserPage,
@@ -85,6 +87,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     HomePage,
     PemakaianPage,
     Pemakaian2Page,
+    MaterialPage,
     Pemakaian3Page,
     Pemakaian4Page,
     BaPage,

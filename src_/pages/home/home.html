@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <button ion-button menuToggle >
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Update Material Alista</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+  <ion-item>
+    <ion-label fixed>Wo Number :</ion-label>
+    <ion-input [(ngModel)]="wo" type="text"  value="" placeholder="..."></ion-input>
+  </ion-item>
+  
+</ion-list>
+
+  <ion-item-group *ngFor="let row of data_wo; let i =index">
+    <ion-item-divider color="light" text-wrap> ID Barang &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  <b>{{row.id_barang}}</b>  </ion-item-divider>
+    <ion-item>Stock Barang  &nbsp;&nbsp;&nbsp;&nbsp;: {{row.stok}}</ion-item>
+    <ion-item>Satuan Barang &nbsp;&nbsp;: {{row.satuan}}</ion-item>
+    <ion-item>
+        <ion-label >Volume Update &nbsp;: </ion-label>
+        <ion-input value="{{nol.value}}" [(ngModel)]="modeKeys[i]" type="text" placeholder="..."  ></ion-input>
+    </ion-item>
+
+  </ion-item-group>
+    <div *ngIf="platform_device =='Android'">
+        <ion-item>
+            File   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+            <button wrap-text ion-button color="danger"  (click)="browse()">Upload</button> {{path}}
+            <hr/>
+        </ion-item>
+  </div>
+  <div *ngIf="platform_device =='iOS'">
+        <ion-item>
+            File   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+            <button wrap-text ion-button color="danger"  (click)="fotoAction()">Foto </button> {{path}}
+            <hr/>
+        </ion-item>
+  </div>
+<button  ion-button full (click)="SubmitWo()"   color="light" >Submit</button>
+
+</ion-content>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { Pemakaian3Page } from '../pemakaian3/pemakaian3';
+import { Pemakaian4Page } from '../pemakaian4/pemakaian4';
 import { AlertController } from 'ionic-angular';	
 /**
  * Generated class for the Pemakaian2Page page.
@@ -44,7 +44,14 @@ export class Pemakaian2Page {
 	}
 
 	actionNext(){
-		if(this.test_ping == undefined){
+
+		if(this.test_voice_val == ""){
+			this.showAlert("Test Voice tidak boleh kosong");
+		}else if(this.test_internet_val == ""){
+			this.showAlert("Test Internet tidak boleh kosong");
+		}else if(this.test_use_tv_val == ""){
+			this.showAlert("Test USEE TV tidak boleh kosong");
+		}else if(this.test_ping == undefined){
 			this.showAlert("Test Ping tidak boleh kosong");
 		}else if(this.test_upload == undefined){
 			this.showAlert("Test Upload tidak boleh kosong");
@@ -68,8 +75,8 @@ export class Pemakaian2Page {
 				'other_catatan':this.other
 			}
 
-		  	this.storage.set('data2',data);
-		  	this.navCtrl.push(Pemakaian3Page);
+		  	this.storage.set('data4',data);
+		  	this.navCtrl.push(Pemakaian4Page);
 		}
 
 	  }

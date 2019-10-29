@@ -1,0 +1,27 @@
+<!--
+  Generated template for the ListWoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="danger">
+    <button ion-button menuToggle >
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>List Stock Barang</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+<ion-list>
+  <button ion-item *ngFor="let item of items" >
+    <div ><td width="100px">ID Barang</td> <td width="10px">:</td> <td>{{ item.id_barang }}</td> </div><br/>
+    <div ><td width="100px">Stock</td> <td width="10px">:</td> <td>{{ item.stok }}</td> </div><br/>
+    <div ><td width="100px">Satuan</td> <td width="10px">:</td> <td>{{ item.satuan }}</td> </div><br/>
+  </button>  
+</ion-list>
+
+</ion-content>

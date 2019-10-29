@@ -1,0 +1,287 @@
+<!--
+  Generated template for the PemakaianPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="danger">
+    <button ion-button menuToggle >
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Halaman-1</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div [ngSwitch]="menu">
+  <div *ngSwitchCase="'order'">
+     <label ><font size="5" color="red">ORDER</font></label>
+     <br/>
+    <div style="margin: -10px -20px 0px -20px">
+      <ion-card width="100%">
+        <ion-card-header>
+          <b>Nama Perusahaan</b>
+        </ion-card-header>
+      <ion-card-content>
+        <ion-list radio-group [(ngModel)]="perusahaan" (ionChange)="changePerusahan($event)">
+        <table width="100%">
+            <tr>
+              <td><div style="margin-left: 15px"><ion-label >Perusahaan</ion-label></div></td>
+              <td>
+                <table>
+                  <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div style="margin-top: -15px;width: 130px"><ion-radio value="telkom akses" ></ion-radio>
+                         Telkom Akses</div>
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div style="margin-top: -15px;margin-left: 10px"><ion-radio value="mitra" ></ion-radio>
+                         Mitra</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+        </table>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    </div>
+
+  <ion-item (click)="presentProfileModal()" *ngIf="view_nama_mitra == 2">
+     <ion-label stacked><font color="black">Nama Mitra</font></ion-label>
+    <ion-input placeholder="Type something"  disabled [(ngModel)]="nama_mitra" style="color:grey" ></ion-input>
+    
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked><font color="black">No WO</font></ion-label>
+    <ion-input placeholder="Type something" [(ngModel)]="no_wo" style="color:grey"  ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked><font color="black">STO</font></ion-label>
+    <ion-input placeholder="Type something" [(ngModel)]="sto" style="color:grey"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked><font color="black">No Permintaan</font></ion-label>
+    <ion-input placeholder="Type something" [(ngModel)]="no_permintaan" style="color:grey"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked><font color="black">No Telepon</font></ion-label>
+    <ion-input placeholder="Type something" [(ngModel)]="no_telepon" type="number" style="color:grey"></ion-input>
+  </ion-item>
+   <ion-item>
+    <ion-label stacked><font color="black">No Inet</font></ion-label>
+    <ion-input placeholder="Type something" [(ngModel)]="no_inet" type="number" style="color:grey"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked><font color="black">Start Date</font></ion-label>
+    <ion-datetime displayFormat="MMM DD, YYYY" (ionChange)="changeStart($event)"  [(ngModel)]="tanggal_mulai"  style="color:grey"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked><font color="black">End Date</font></ion-label>
+    <ion-datetime  displayFormat="MMM DD, YYYY" (ionChange)="changeEnd($event)"  [(ngModel)]="tanggal_selesai" style="color:grey" ></ion-datetime>
+  </ion-item>
+
+  
+   <ion-item>
+    <ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
+    <ion-input placeholder="Type something" [(ngModel)]="nama_pelanggan" style="color:grey"></ion-input>
+  </ion-item>
+    
+    
+  </div>
+
+  <div *ngSwitchCase="'datek'">
+    <label ><font size="5" color="red">DATEK</font></label>
+       <ion-item>
+          <ion-label stacked><font color="black">HK/MSAN/ODC</font></ion-label>
+          <ion-input placeholder="Type something" [(ngModel)]="hk" style="color:grey"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked><font color="black">DP/ODP</font></ion-label>
+          <ion-input placeholder="Type something" [(ngModel)]="dp" style="color:grey"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked><font color="black">Klem Primer/Feeder</font></ion-label>
+          <ion-input placeholder="Type something" [(ngModel)]="klem_primer" style="color:grey"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked><font color="black">Klem Sec/Distribusi</font></ion-label>
+          <ion-input placeholder="Type something" [(ngModel)]="klem_sec" style="color:grey"></ion-input>
+        </ion-item>
+    
+  </div>
+  <div *ngSwitchCase="'material'">
+    <label ><font size="5" color="red">Material</font></label>
+    <ion-item *ngIf="panjang_drop_core_v == ''">
+      <ion-label stacked><font color="black">Panjang Drop Core</font></ion-label>
+      <ion-input placeholder="Type something" [(ngModel)]="panjang_drop_core" style="color:grey"  ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="panjang_drop_core_v != ''">
+      <ion-label stacked><font color="black">Panjang Drop Core</font></ion-label>
+      <ion-input disabled placeholder="Type something" [(ngModel)]="panjang_drop_core" style="color:grey"  ></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="drop_core_v == ''">
+      <ion-label stacked><font color="black">Drop Core</font></ion-label>
+      <ion-input placeholder="Type something" [(ngModel)]="drop_core" style="color:grey"  ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="drop_core_v != ''">
+      <ion-label stacked><font color="black">Drop Core</font></ion-label>
+      <ion-input disabled placeholder="Type something" [(ngModel)]="drop_core" style="color:grey"  ></ion-input>
+    </ion-item>
+
+   
+
+    <ion-item *ngIf="panjang_utp_v == ''">
+      <ion-label stacked><font color="black">Panjang UTP</font></ion-label>
+      <ion-input placeholder="Type something" [(ngModel)]="panjang_utp" style="color:grey"  ></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="panjang_utp_v != ''">
+      <ion-label stacked><font color="black">Panjang UTP</font></ion-label>
+      <ion-input disabled placeholder="Type something" [(ngModel)]="panjang_utp" style="color:grey"  ></ion-input>
+    </ion-item>
+
+    <ion-item  *ngIf="panjang_pvc_v == ''">
+      <ion-label stacked><font color="black">Panjang PVC</font></ion-label>
+      <ion-input placeholder="Type something" [(ngModel)]="panjang_pvc" style="color:grey"  ></ion-input>
+    </ion-item>
+    <ion-item  *ngIf="panjang_pvc_v != ''">
+      <ion-label stacked><font color="black">Panjang PVC</font></ion-label>
+      <ion-input disabled placeholder="Type something" [(ngModel)]="panjang_pvc" style="color:grey"  ></ion-input>
+    </ion-item>
+
+    <ion-item  *ngIf="panjang_tray_cable_v == ''">
+      <ion-label stacked><font color="black">Panjang Tray Cable</font></ion-label>
+      <ion-input placeholder="Type something" [(ngModel)]="panjang_tray_cable" style="color:grey"  ></ion-input>
+    </ion-item>
+    <ion-item  *ngIf="panjang_tray_cable_v != ''">
+      <ion-label stacked><font color="black">Panjang Tray Cable</font></ion-label>
+      <ion-input disabled placeholder="Type something" [(ngModel)]="panjang_tray_cable" style="color:grey"  ></ion-input>
+    </ion-item>
+
+    <ion-item  *ngIf="jumlah_breket_v == ''">
+      <ion-label stacked><font color="black">Jumlah Braket</font></ion-label>
+      <ion-input placeholder="Type something" [(ngModel)]="jumlah_breket" style="color:grey"  ></ion-input>
+    </ion-item>
+    <ion-item  *ngIf="jumlah_breket_v != ''">
+      <ion-label stacked><font color="black">Jumlah Braket</font></ion-label>
+      <ion-input disabled placeholder="Type something" [(ngModel)]="jumlah_breket" style="color:grey"  ></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="jumlah_klem_ring_v == ''">
+      <ion-label stacked><font color="black">Jumlah Klem Ring</font></ion-label>
+      <ion-input placeholder="Type something" [(ngModel)]="jumlah_klem_ring" style="color:grey"  ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="jumlah_klem_ring_v != ''">
+      <ion-label stacked><font color="black">Jumlah Klem Ring</font></ion-label>
+      <ion-input disabled placeholder="Type something" [(ngModel)]="jumlah_klem_ring" style="color:grey"  ></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="jumlah_tiang_telpn_v == ''">
+      <ion-label stacked><font color="black">Jumlah Tiang Telepon</font></ion-label>
+      <ion-input placeholder="Type something" [(ngModel)]="jumlah_tiang_telpn " style="color:grey"  ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="jumlah_tiang_telpn_v != ''">
+      <ion-label stacked><font color="black">Jumlah Tiang Telepon</font></ion-label>
+      <ion-input disabled placeholder="Type something" [(ngModel)]="jumlah_tiang_telpn " style="color:grey"  ></ion-input>
+    </ion-item>
+      <br/>
+      <div>
+
+    <table>
+      <tr>
+        <td >
+        </td>
+        <td width="10%" align="right">
+          <div align="right">
+            <table>
+              <tr>
+                <td>
+                    <button class="button" (click)="newElement()">
+                      <ion-icon name="add"></ion-icon> Item Lain &nbsp;
+                    </button>
+                </td>
+                <td>
+                  &nbsp;
+                  &nbsp;
+                </td>
+                <td>
+                    <button class="button" *ngIf="no_row != 0" (click)="removeElememt()">
+                      &nbsp;&nbsp;<ion-icon name="md-remove"></ion-icon>&nbsp;&nbsp;
+                    </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+      <div  id="parent" style="margin:15px"></div>
+      <!-- <div class="border"  >
+          <div *ngFor="let item of data_material" id="el"><table><tr><td width="40%"><input disabled placeholder="ID Barang" type="text" value="{{item.id_barang}}" class="classInput"/></td><td width="20%"><input type="text" value="{{item.jml_pemakaian}}" disabled placeholder="volume" id="volume" class="classInput"/></td><td  width="20%"><input value="{{item.satuan}}" type="text" disabled placeholder="satuan" id="satuan" class="classInput"/></td></tr></table></div>
+      </div> -->
+  </div>
+  </div>
+
+</div>
+  <div padding>
+    <ion-segment [(ngModel)]="menu">
+      <ion-segment-button value="order" style="background: DeepSkyBlue;border-top-left-radius: 10px;border-bottom-left-radius: 10px">
+       <font color="white">ORDER</font> 
+      </ion-segment-button>
+      <ion-segment-button value="datek" style="background: DeepSkyBlue">
+        <font color="white"> DATEK </font>
+      </ion-segment-button>
+      <ion-segment-button value="material" style="background: DeepSkyBlue;border-top-right-radius: 10px;border-bottom-right-radius: 10px">
+        <font color="white">  MATERIAL </font>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+
+    <table>
+      <tr>
+        <td >
+        </td>
+        <td width="10%" align="right">
+          <div align="right">
+            <table>
+              <tr>
+                <td>
+                    <!-- <button class="button" (click)="newElementDsg()">
+                      <font size="2"><ion-icon name="add"></ion-icon> Designator Lain &nbsp;</font>
+                    </button> -->
+                </td>
+                <td>
+                  &nbsp;
+                  &nbsp;
+                </td>
+                <td>
+                    <button class="button" *ngIf="no_row_dsg != 0" (click)="removeElememtDsg()">
+                      &nbsp;&nbsp;<ion-icon name="md-remove"></ion-icon>&nbsp;&nbsp;
+                    </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <br/>
+
+    <div id="parentDsg"></div>
+
+<div align="right">
+  <button class="button" (click)="actionNext()" right>Next ></button>
+</div>
+
+</ion-content>

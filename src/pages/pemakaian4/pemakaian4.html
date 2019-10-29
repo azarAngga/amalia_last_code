@@ -23,15 +23,15 @@
 	    <font color="red">Disclaimer</font>
 	  </ion-card-header>
 	  <ion-card-content>
-	    	1. Perangkat (ONT/Modem/STB) yang dipasang pelanggan aalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali <br/><br/>
+	    	1.Perangkat (ONT/Modem/STB) yang dipasang pelanggan adalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali <br/><br/>
 	    	2.TELKOM dapat mengambil Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali
-	    	3.Untuk progress pemiliharaan minitoring, diharapkan power perangkat selalu dalam kondisi hidup (ON)<br/><br/>
+	    	3.Untuk progress pemiliharaan monitoring, diharapkan power perangkat selalu dalam kondisi hidup (ON)<br/><br/>
 	    	4.Disarankan untuk segera merubah password yang ada untuk menjaga agar tidak dipergunakan pihak-pihak yang tidak dikehendaki.<br/><br/>
-			
-	    	5.pelanggan sudah mendapatkan penjelasan dan sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang 
+	    	5.Pelanggan sudah mendapatkan penjelasan dan sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang 
 	  </ion-card-content>
 	</ion-card>
-
+	<br/>
+	
 	<ion-card hidden>
 
 	  <ion-card-header>
@@ -40,7 +40,7 @@
 
 	  <ion-card-content>
 	  	<ion-list radio-group [(ngModel)]="kendala">
-	    <table style="" width="100%">
+	    <table width="100%">
 	    	<tr>
 	    		<td width="50%">
 		    		<ion-radio  value="1"></ion-radio> Alamat Tidak Jelas
@@ -86,8 +86,8 @@
 	  </ion-card-content>
 
 	</ion-card>
-	<br/>
-	<ion-card>
+
+	<ion-card hidden>
 
 	  <ion-card-header>
 	    <font color="red">Alasan Decline/ Pelanggan tidak memerlukan</font>
@@ -181,11 +181,12 @@
 			<td align="center"  width="50%"><div (click)="openModalDenah()"  style="border-color: grey; border-style: double;width: 250px;height: 200px" ><img *ngIf="denah" style="width: 100px;height: 100px" [src]="denah" ></div></td>
 		</tr>
 	</table>
+
 	<br/>
-	<div align="right"> <input style="width: 115px"  type="text" [(ngModel)]="tempat_ttd" value=""  placeholder="Tulis tempat TTD"/> , {{tanggal_ttd}}</div>
+	<div hidden align="right"> <input style="width: 115px"  type="text" [(ngModel)]="tempat_ttd" value=""  placeholder="Tulis tempat TTD"/> , {{tanggal_ttd}}</div>
 	<br/>
 	
-	<table width="100%">
+	<table hidden width="100%">
 		<tr>
 			<td><div align="center">Pelanggan</div></td>
 			<td><div align="center">Mitra</div></td>

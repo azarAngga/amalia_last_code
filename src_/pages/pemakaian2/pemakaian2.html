@@ -1,0 +1,242 @@
+<!--
+  Generated template for the Pemakaian2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Halaman ke-2</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div class="text_light">
+	<div align="center">
+		<label><font color="red"></font></label>
+	</div>
+	<table width="100%">
+	<tr>
+		<td width="30%"><div class="left_line"><hr class="color" /></div></td>
+		<td width="20%"><div align="center" class="font_color"><b>Test Usage</b></div></td>
+		<td width="30%"><div class="right_line"><hr class="color" /></div></td>
+	</tr>
+	</table>
+	    	<div align="center">
+				<table class="only_border_top" width="100%">
+					<tr>
+						<th width="30%" rowspan="2" class="text_light"><div class="text_light">TEST LAYANAN</div></th>
+						<th width="30%" rowspan="2" class="text_light" ><div class="text_light"></div></th>
+						<th width="30%" class="only_border_bottom "><div class="text_light">KRITERIA</div></th>
+					</tr>
+					<tr >
+						<td>
+							<table width="100%" >
+							<tr >
+								<td width="50%" align="center"><div class="text_light">Baik</div></td>
+								<td width="50%" align="center"><div class="text_light">Buruk</div></td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					<tr class="only_border_top">
+						<!-- <td > &nbsp;Test Voice</td>
+						<td>&nbsp;Call</td> -->
+						<td colspan="2">
+							<label>Test Voice</label>
+							<ion-input color="red" type="number" [(ngModel)]="test_voice_val" placeholder="Call Number" value=""></ion-input>
+						</td>
+						<td>
+							<ion-list radio-group [(ngModel)]="test_voice">
+							<table width="100%" >
+							<tr>
+								<td width="50%" align="center">
+									
+						                <ion-radio style="margin-top: 20px"  value="1" ></ion-radio>
+						            
+								</td>
+								<td width="50%" align="center">
+									
+						                <ion-radio style="margin-top: 20px"  value="0" ></ion-radio>
+						           
+								</td>
+							</tr>
+							</table>
+							</ion-list>
+						</td>
+					</tr>
+					<tr class="only_border_top">
+						<!-- <td>&nbsp;Test Internet</td>
+						<td>&nbsp;Https://wwww.</td> -->
+						<td colspan="2">
+								<label>Test Internet</label>
+								<ion-input color="red" type="text" [(ngModel)]="test_internet_val" placeholder="Https://www" value=""></ion-input>
+						</td>
+						<td>
+							<ion-list radio-group [(ngModel)]="test_internet" >
+							<table  width="100%">
+							<tr >
+								<td width="50%" align="center">
+									
+						                <ion-radio style="margin-top: 20px"  value="1" ></ion-radio>
+						           
+								</td>
+								<td width="50%" align="center">
+									
+						                <ion-radio style="margin-top: 20px"  value="0" ></ion-radio>
+						            
+								</td>
+							</tr>
+							</table>
+							</ion-list>
+						</td>
+					</tr>
+					<tr class="only_border_top only_border_bottom">
+						<!-- <td>&nbsp;Test UseTV</td>
+						<td>&nbsp;Chanel</td> -->
+						<td colspan="2">
+							<label>Test User TV</label>
+							<ion-input color="red" type="text" [(ngModel)]="test_use_tv_val" placeholder="Channel" value=""></ion-input>
+						</td>
+						<td><div>
+							<ion-list radio-group [(ngModel)]="test_use_tv" >
+							<table width="100%" >
+							<tr>
+								<td width="50%" align="center" >
+						                <ion-radio style="margin-top: 20px" value="1" ></ion-radio>
+								</td>
+								<td width="50%" align="center">
+						                <ion-radio style="margin-top: 20px" value="0" ></ion-radio>
+								</td>
+							</tr>
+							</table>
+							</ion-list>
+						</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<br/>
+		    <table width="100%">
+				<tr>
+					<td width="30%"><div class="left_line"><hr class="color" /></div></td>
+					<td width="20%"><div align="center" class="font_color"><b>Test Jaringan</b></div></td>
+					<td width="30%"><div class="right_line"><hr class="color" /></div></td>
+				</tr>
+			</table>
+	  			<table width="100%">
+	  	
+	  				<tr>
+	  					<td>
+	  						&nbsp;Test Ping
+	  						<ion-item>
+							    <ion-input color="red" type="number" [(ngModel)]="test_ping" placeholder="...ms"></ion-input>
+							</ion-item>
+
+	  					</td>
+	  				</tr>
+	  				<tr>
+	  				
+	  					<td>
+	  						Test Upload
+	  						<ion-item>
+							    <ion-input type="number" [(ngModel)]="test_upload" placeholder="...mbps"></ion-input>
+							</ion-item>
+
+	  					</td>
+	  				</tr>
+	  				<tr>
+	  					
+	  					<td>
+	  						Test Download
+	  						<ion-item>
+							    <ion-input type="number" [(ngModel)]="test_download" placeholder="...mbps"></ion-input>
+							</ion-item>
+
+	  					</td>
+	  				</tr>
+	  				<tr>
+	  					
+	  					<td>
+	  						Hasil Ukur & &nbsp;Redaman
+	  						<ion-item>
+							    <ion-input type="number" [(ngModel)]="hasil_ukur" placeholder="...db"></ion-input>
+							</ion-item>
+
+	  					</td>
+	  				</tr>
+
+	  			</table>
+
+		  	<table width="100%">
+				<tr>
+					<td width="30%"><div class="left_line"><hr class="color" /></div></td>
+					<td width="30%"><div align="center" class="font_color"><b>Catatan Khusus</b></div></td>
+					<td width="30%"><div class="right_line"><hr class="color" /></div></td>
+				</tr>
+			</table>
+	  	<ion-card>
+		  <ion-card-content>
+		    <ion-list radio-group>
+
+			   <ion-list radio-group [(ngModel)]="catatan_khusus" (ionChange)="changeCatatanKhusus($event)">
+				<table  width="100%">
+				<tr>
+					<td width="10%" valign="top">
+			             <ion-radio value="1" checked></ion-radio>
+			         </td>
+			        <td valign="top">
+			        	Pelanggan belum / tidak memiliki TV set dan bersedia menitipkan STB ke Telkom
+			        </td>
+					
+				</tr>
+				<tr>
+					<td width="10%" valign="top">
+		                <ion-radio value="2" ></ion-radio>
+					</td>
+					<td>
+						Pelanggan belum / tidak menginginkan Usee TV dan bersedia menitipkan STB ke Telkom	
+					</td>
+				</tr>
+				<tr>
+					<td width="10%" valign="top">
+		                <ion-radio value="3" ></ion-radio>
+					</td>
+					<td>
+						<tr>
+							<td>lain-lain</td> 
+							<td>
+								
+									<ion-input  *ngIf="catatan_khusus == 3" type="text" [(ngModel)]="other" placeholder="Tulis sesuatu..."></ion-input>
+								
+							</td> 
+						</tr>  
+					</td>
+				</tr>
+				</table>
+				</ion-list>
+			</ion-list>
+		  </ion-card-content>
+		</ion-card>
+		<table width="100%">
+		<tr>
+			<td>
+				<div align="left">
+				  <br/>
+				  <button class="button"   (click)="actionBack()" right>< Back </button>
+				</div>
+			</td>
+			<td width="30%"></td>
+			<td>
+				<div align="right">
+				  <br/>
+				  <button class="button"  (click)="actionNext()" right>Next > </button>
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+</ion-content>

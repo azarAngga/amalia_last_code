@@ -1,0 +1,429 @@
+<!--
+  Generated template for the Pemakaian2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Halaman ke-3</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<!-- <button id="x" (click)="changeColor()">Click Me!</button> (input)="getItems($event)"-->
+<!-- <ion-input type="text"  [(ngModel)]="atr" placeholder="Tulis sesuatu" id="atribut" value="0"></ion-input> -->
+	<input type="text" #atri id="atribut" hidden>
+	<button id="k"  (click)="scanSeconStb()" hidden>test</button>
+	<div align="center">
+		<label><font color="red"></font></label>
+	</div>
+	
+	    	<div align="center">
+				<table  width="100%">
+					<tr>
+						<th width="100%" colspan="2" >
+							<div  style="margin-left: -120px">Modem yang dipasang / ditarik *) </div>
+
+							  <ion-list>
+							  <ion-item>
+								<ion-label>Modem</ion-label>
+								<ion-select [(ngModel)]="modem">
+								  <ion-option value="zte">ZTE</ion-option>
+								  <ion-option value="huawei">Huawei</ion-option>
+								  <ion-option value="NTE (ONT FIBER HOME)">NTE (ONT FIBER HOME)</ion-option>
+								  <ion-option value="ALU">ALU</ion-option>
+								  
+								</ion-select>
+							  </ion-item>
+							</ion-list>
+						</th>
+						
+					</tr>
+					<tr>
+						<td>
+							SN ONT
+							<div >
+								<button (click)="actionScanOnt()"  class="button">
+								  <ion-icon name="md-barcode"></ion-icon> &nbsp; Scan Barcode
+								</button>
+							</div>
+						</td>
+						<td><br/><br/>
+						<ion-list style="margin-left: 10px">
+						  <ion-item>
+						    <ion-input type="text" [(ngModel)]="sn_ont" placeholder="Tulis sesuatu"></ion-input>
+						  </ion-item>
+						  </ion-list>
+						</td>
+						
+					</tr>
+					<tr>
+						<td>
+							SN MODEM
+								<button (click)="actionModem()" class="button">
+								  <ion-icon name="md-barcode"></ion-icon>&nbsp; Scan Barcode
+								</button>
+							
+						</td>
+							<td><br/><br/>
+								<ion-list style="margin-left: 10px">
+								  <ion-item>
+								    <ion-input type="text" [(ngModel)]="sn_modem" placeholder="Tulis sesuatu"></ion-input>
+								  </ion-item>
+								  </ion-list>
+						</td>
+					</tr>
+
+					<!-- <button (click)="newElement()" class="button">Add</button> -->
+					
+					<tr>
+
+						<td colspan="2">
+							<br/>
+							<br/>
+							<hr/>
+							<!-- <button id="btn_1" class="button"></button> -->
+							<div>
+							MAC Address STB 
+							<img (click)="removeElememt()" style="margin-top: 10" src="minus.png" height="30"  /> 
+							<!-- <img onclick="removeElememt()" style="margin-top: 10" src="minus.png" height="30"  />  -->
+							<!-- <img src="add.png" height="30" onclick="addnew()" /></div> -->
+							<img src="add.png" height="30" (click)="newElement()" /></div>
+								<!-- <button (click)="actionMac()" class="button">
+								  
+								  <ion-icon name="md-barcode"></ion-icon>&nbsp; Scan Barcode
+								</button> -->
+							
+						
+						<table>
+							<tr>
+								<td>
+									<!-- <ion-list style="margin-left: 10px">
+									  <ion-item>
+									    <ion-input type="text" [(ngModel)]="mac_address" placeholder="Tulis sesuatu"></ion-input>
+									  </ion-item>
+									  </ion-list> -->
+								</td>
+								<!-- <td width="10%"><img src="minus.png" height="30"  /></td>
+								<td width="10%"><img src="add.png" height="30" (click) ="newElement()" /> </td> -->
+							</tr>
+						</table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><div id="parent"></div> <hr/><br/></td>
+
+					</tr>
+					<tr>
+						<td>
+							SN PLC
+								<button (click)="actionPlc()" class="button">
+								  
+								  <ion-icon name="md-barcode"></ion-icon>&nbsp; Scan Barcode
+								</button>
+							
+						</td>
+						<td><br/><br/>
+						<ion-list style="margin-left: 10px">
+						  <ion-item>
+						    <ion-input type="text" [(ngModel)]="sn_plc" placeholder="Tulis sesuatu"></ion-input>
+						  </ion-item>
+						  </ion-list>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							SN WIFI EXTENDER
+								<button (click)="actionWifi()" class="button">
+								  
+								  <ion-icon name="md-barcode"></ion-icon>&nbsp; Scan Barcode
+								</button>
+							
+						</td>
+						<td><br/><br/>
+						<ion-list style="margin-left: 10px">
+						  <ion-item>
+						    <ion-input type="text" [(ngModel)]="sn_wifi_extender" placeholder="Tulis sesuatu"></ion-input>
+						  </ion-item>
+						  </ion-list>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">Lampu indikator modem nyala</td>
+					</tr>
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>
+					<tr> 
+						<td colspan="2">
+							<table width="100%">
+								<tr>
+								<td valign="top" width="40%">
+									  <ion-checkbox color="green" value="1" [(ngModel)]="power"></ion-checkbox>
+									 Power
+								</td>
+								<td valign="top" width="30%">
+									
+									  <ion-checkbox color="green" value="1" [(ngModel)]="dsl"></ion-checkbox>
+									DSL
+								</td>
+								<td valign="top">
+								
+									  <ion-checkbox color="green" value="1" [(ngModel)]="internet" ></ion-checkbox>
+									  Internet
+								</td>
+							</tr>
+						</table>
+					</td>
+					</tr>
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>
+			
+				</table>
+			</div>
+
+	<!--PSB-->
+	<ion-card>
+	  <ion-card-header>
+	    PSB
+	    <hr/>
+	  </ion-card-header>
+
+	  <ion-card-content>
+	  	<ion-list radio-group [(ngModel)]="psb">
+	    <table width="100%">
+	    	<tr>
+	    		<td width="50%">
+		    		<ion-radio  checked="true" value="1"></ion-radio> 1P
+				</td>
+				<td>
+					<ion-radio value="2"></ion-radio> 2P
+				</td>
+		    	<td>
+		    		<ion-radio   value="3"></ion-radio> 3P
+		    	</td>
+	    	</tr>
+	    </table>
+		</ion-list>
+	  </ion-card-content>
+	</ion-card>
+
+	<br/>
+	<!--MIGRASI-->
+	<ion-card>
+	  <ion-card-header>
+	    Migrasi
+	    <hr/>
+	  </ion-card-header>
+
+	  <ion-card-content>
+	  	<ion-list radio-group [(ngModel)]="migrasi">
+	    <table width="100%">
+	    	<tr hidden>
+	    		<td width="50%">
+		    		<ion-radio checked="true" value="1"></ion-radio> Infrastruktur
+		    	</td>
+		    </tr>
+		    <tr >
+	    		<td width="50%">
+		    		<ion-radio checked="true" value="4"></ion-radio>  Infrastruktur 1P - 1P
+		    	</td>
+		    	<td>
+		    		<ion-radio  value="10"></ion-radio> Layanan 1P-2P
+		    	</td>
+
+		    </tr>
+		    <tr>
+		    	<td width="50%">
+		    		<ion-radio checked="true" value="5"></ion-radio>  Infrastruktur 1P - 2P
+		    	</td>
+		    	<td>
+		    		<ion-radio  value="2"></ion-radio> Layanan 1P-3P
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td width="50%">
+		    		<ion-radio checked="true" value="6"></ion-radio>  Infrastruktur 1P - 3P
+		    	</td>
+		    	<td>
+		    		<ion-radio  value="3"></ion-radio> Layanan 2P-3P
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td width="50%">
+		    		<ion-radio checked="true" value="7"></ion-radio>  Infrastruktur 2P - 2P
+		    	</td>
+		    	<td>
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td width="50%">
+		    		<ion-radio checked="true" value="8"></ion-radio>  Infrastruktur 2P - 3P
+		    	</td>
+		    	<td></td>
+	    	</tr>
+	    	<tr>
+	    		<td width="50%">
+		    		<ion-radio checked="true" value="9"></ion-radio>  Infrastruktur 3P - 3P
+		    	</td>
+		    	<td></td>
+	    	</tr>
+	    	
+	    </table>
+		</ion-list>
+	  </ion-card-content>
+	</ion-card>	
+
+	<br/>
+	<!--TAMBAHAN-->
+	<ion-card>
+		<ion-card-header>
+		  Tambahan
+		  <hr/>
+		</ion-card-header>
+  
+		<ion-card-content>
+			<ion-list radio-group [(ngModel)]="tambahan">
+		  <table width="100%">
+			  <tr>
+				  <td width="50%">
+					<ion-radio value="1"></ion-radio> Change STB
+				  </td>
+				  <td>
+					<ion-radio  value="2"></ion-radio> STB Tambahan
+				  </td>
+				  <td>
+					  
+				  </td>
+			  </tr>
+			  <tr>
+				  <td>
+					<ion-radio  value="3"></ion-radio> PLC
+				  </td>
+				  <td>
+					  <ion-radio  value="4"></ion-radio> Wifi Extender
+				  </td>
+			  </tr>
+			  <tr>
+				  <td>
+					  <ion-radio value="5"></ion-radio> IndiBox
+				  </td>
+				  <td>
+					  
+				  </td>
+			  </tr>
+  
+		  </table>
+		  </ion-list>
+		</ion-card-content>
+	  </ion-card>
+
+	<br/>  
+	<!--TAMBAHAN-->
+	<ion-card>
+
+	  <ion-card-header>
+	    Speed
+	    <hr/>
+	  </ion-card-header>
+
+	  <ion-card-content>
+	  	<ion-list radio-group [(ngModel)]="speed" (ionChange)="actionChangeKecepatan($event)">
+	    <table width="100%">
+	    	<tr>
+	    		<td width="50%">
+		    		<ion-radio checked="true" value="1"></ion-radio> 10MB
+		    	</td>
+		    	<td>
+						<ion-radio  value="2"></ion-radio> 20MB
+		    		
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+						<ion-radio  value="3"></ion-radio> 30MB
+		    	</td>
+		    	<td>
+						<ion-radio  value="4"></ion-radio> 40MB
+		    		
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+						<ion-radio  value="5"></ion-radio> 50MB
+		    	</td>
+		    	<td>
+					
+		    		<ion-radio  value="10"></ion-radio> 100MB
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+		    		<ion-radio  value="11"></ion-radio> 200MB
+		    	</td>
+		    	<td>
+		    		<ion-radio  value="12"></ion-radio> 300MB
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+		    		<ion-radio  value="13"></ion-radio> 1GB
+		    	</td>
+		    	<td>
+		    		&nbsp;
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td colspan="2">
+	    			<table>
+	    			<tr>
+	    				<td>
+	    					<ion-radio  value="other"></ion-radio> 
+	    				</td>
+	    				<td><ion-item>
+						    <ion-label fixed>Other</ion-label>
+						    <ion-input *ngIf="other_view == 0"  [(ngModel)]="speed_other" disabled type="number" value=""></ion-input>
+						     <ion-input *ngIf="other_view == 1"  [(ngModel)]="speed_other"  type="number" value=""></ion-input>
+						  </ion-item>
+						</td>
+	    			</tr>
+		    		</table>
+		    	</td>
+	    	</tr>
+	    </table>
+		</ion-list>
+	  </ion-card-content>
+	</ion-card>
+
+		<table width="100%">
+		<tr>
+			<td>
+				<div align="left">
+				  <br/>
+				  <button class="button" (click)="actionBack()" right>Back</button>
+				</div>
+			</td>
+			<td width="30%">
+				&nbsp;
+			</td>
+			<td>
+				<div align="right">
+				  <br/>
+				  <button class="button"  (click)="actionNext()" right>Next</button>
+				</div>
+			</td>
+		</tr>
+		</table>
+
+
+		
+</ion-content>

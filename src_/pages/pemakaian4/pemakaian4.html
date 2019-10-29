@@ -1,0 +1,231 @@
+<!--
+  Generated template for the Pemakaian2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Halaman ke-4</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+	<div class="text_light">
+	<div align="center">
+		<label><font color="red">LAPORAN PENYELESAIAN PEKERJAAN INSTALASI PASANG BARU/MIGRASI</font></label>
+	</div>
+	<ion-card >
+	  <ion-card-header>
+	    <font color="red">Disclaimer</font>
+	  </ion-card-header>
+	  <ion-card-content>
+	    	1. Perangkat (ONT/Modem/STB) yang dipasang pelanggan aalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali <br/><br/>
+	    	2.TELKOM dapat mengambil Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali
+	    	3.Untuk progress pemiliharaan minitoring, diharapkan power perangkat selalu dalam kondisi hidup (ON)<br/><br/>
+	    	4.Disarankan untuk segera merubah password yang ada untuk menjaga agar tidak dipergunakan pihak-pihak yang tidak dikehendaki.<br/><br/>
+			
+	    	5.pelanggan sudah mendapatkan penjelasan dan sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang 
+	  </ion-card-content>
+	</ion-card>
+
+	<ion-card hidden>
+
+	  <ion-card-header>
+	   <font color="red"> Kendala</font>
+	  </ion-card-header>
+
+	  <ion-card-content>
+	  	<ion-list radio-group [(ngModel)]="kendala">
+	    <table style="" width="100%">
+	    	<tr>
+	    		<td width="50%">
+		    		<ion-radio  value="1"></ion-radio> Alamat Tidak Jelas
+		    	</td>
+		    	<td>
+		    		<div ><ion-radio  value="2"></ion-radio> Nama CP belum sesuai</div>
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+		    		<ion-radio  value="3"></ion-radio> Bangunan direhab
+		    	</td>
+		    	<td>
+		    		<ion-radio  value="4"></ion-radio> Kendala IKR/G
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+		    		<ion-radio  value="5"></ion-radio> Penghuni tidak ada
+		    	</td>
+		    	<td>
+		    		<ion-radio  value="6"></ion-radio> Modem rusak
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+		    		<ion-radio  value="7"></ion-radio> Primer kritis/habis
+		    	</td>
+		    	<td>
+		    		<ion-radio  value="8"></ion-radio> Perangkat belum siap
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+		    		<ion-radio  value="9"></ion-radio> Sekunder kritis/habis
+		    	</td>
+		    	<td>
+		    		<ion-radio  value="10"></ion-radio> Port multimedia habis
+		    	</td>
+	    	</tr>
+	    </table>
+		</ion-list>
+	  </ion-card-content>
+
+	</ion-card>
+	<br/>
+	<ion-card>
+
+	  <ion-card-header>
+	    <font color="red">Alasan Decline/ Pelanggan tidak memerlukan</font>
+	  </ion-card-header>
+
+	  <ion-card-content>
+	  	<ion-list radio-group [(ngModel)]="alasan_decline" >
+	    <table width="100%">
+	    	<tr>
+	    		<td >
+	    			<table>
+	    				<tr>
+	    					<td width="50%"><ion-radio value="1"></ion-radio> menggunakan ISP</td>
+	    					<td *ngIf="alasan_decline==1">
+								     <input  type="text" [(ngModel)]="menggunakan_isp_view" value=""  placeholder="Tulis sesuatu"/>  
+								     <div style="margin-top: -7px"><hr  /></div>
+	    					</td>
+	    					<td *ngIf="alasan_decline!=1">
+								     <input disabled=""  type="text" [(ngModel)]="menggunakan_isp_view" value=""  placeholder="Tulis sesuatu"/>  
+								     <div style="margin-top: -7px"><hr  /></div>
+	    					</td>
+	    				</tr>
+	    			</table>
+		    	</td>
+		    </tr>
+		    <tr>
+	    		<td >
+	    			<table>
+	    				<tr>
+	    					<td width="100%"><ion-radio  value="2"></ion-radio> Tidak punya PC/Notebook.Gadget
+	    				</tr>
+	    			</table>
+		    	</td>
+		    </tr>
+	    	<tr>
+	    		<td >
+	    			<table>
+	    				<tr>
+	    					<td width="50%"><ion-radio value="3"></ion-radio> Harga yang di inginkan</td>
+	    					<td *ngIf="alasan_decline==3">
+								     <input width="10" type="text" [(ngModel)]="harga_view" value=""  placeholder="Tulis sesuatu"/>  
+								     <div style="margin-top: -7px"><hr  /></div>
+								     <br/>
+	    					</td>
+	    					<td *ngIf="alasan_decline!=3">
+								     <input disabled=""  type="text" [(ngModel)]="harga_view" value=""  placeholder="Tulis sesuatu"/>  
+								     <div style="margin-top: -7px"><hr  /></div>
+								     <br/>
+	    					</td>
+	    				</tr>
+	    			</table>
+		    	</td>
+		    </tr>
+		    <tr>
+	    		<td >
+	    			<table>
+	    				<tr>
+	    					<td width="100%"><ion-radio value="4"></ion-radio> Tidak ada pengguna internet
+	    				</tr>
+	    			</table>
+		    	</td>
+		    </tr>
+		    <tr>
+	    		<td >
+	    			<table>
+	    				<tr>
+	    					<td width="100%"><ion-radio  value="5"></ion-radio> Tidak di izinkan
+	    				</tr>
+	    			</table>
+		    	</td>
+		    </tr>
+		    <tr>
+	    		<td >
+	    			<table>
+	    				<tr>
+	    					<td width="100%"><ion-radio value="6"></ion-radio> Tidak tertarik
+	    				</tr>
+	    			</table>
+		    	</td>
+		    </tr>
+	    </table>
+		</ion-list>
+	  </ion-card-content>
+	</ion-card>
+
+	<table hidden width="100%">
+		<tr>
+			<td><div align="center">Gambar daerah denah pelanggan</div></td>
+		</tr>
+		<tr>
+			<td align="center"  width="50%"><div (click)="openModalDenah()"  style="border-color: grey; border-style: double;width: 250px;height: 200px" ><img *ngIf="denah" style="width: 100px;height: 100px" [src]="denah" ></div></td>
+		</tr>
+	</table>
+	<br/>
+	<div align="right"> <input style="width: 115px"  type="text" [(ngModel)]="tempat_ttd" value=""  placeholder="Tulis tempat TTD"/> , {{tanggal_ttd}}</div>
+	<br/>
+	
+	<table width="100%">
+		<tr>
+			<td><div align="center">Pelanggan</div></td>
+			<td><div align="center">Mitra</div></td>
+		</tr>
+		<tr>
+			<td align="center"  width="50%"><div (click)="openSignatureModel1()"  style="border-color: grey; border-style: dashed;width: 150px;height: 100px" ><img *ngIf="signatureImage1" style="width: 100px;height: 100px" [src]="signatureImage1" ></div></td>
+			<td align="center"  width="50%"><div (click)="openSignatureModel2()"  style="border-color: grey;border-style: dashed;width: 150px;height: 100px" ><img *ngIf="signatureImage2" style="width: 100px;height: 100px" [src]="signatureImage2" ></div></td>
+		</tr>
+	</table>
+
+	<br/>
+	<br/>
+	<br/>
+	
+	<button hidden *ngIf="generate == 'on'" class="button" (click)="actionGenerate()" right>&nbsp;Generate OTP Code&nbsp;</button>
+	<br/>
+	<br/>
+	<br/>
+
+    <table width="100%">
+		<tr>
+			<td>
+				<div align="left" style="margin-left: -15px">
+				  <br/>
+				  <button class="button" (click)="actionBack()" right>&nbsp;< Back&nbsp;</button>
+				</div>
+			</td>
+			<td width="40%">
+				&nbsp;
+			</td>
+			<td>
+				<div align="right" style="margin-right: -10px">
+				  <br/>
+				  <img *ngIf="loader_gif == 'on'" src="loader.gif" />
+				  <button *ngIf="loader_gif == 'off'"  class="button" (click)="actionPut()" right>Next</button>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+					
+</div>
+	</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <button ion-button menuToggle >
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Crete Wo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+  <ion-item>
+    <ion-label fixed>Wo Number :</ion-label>
+    <ion-input  [(ngModel)]="wo_number" type="text"  value="" placeholder="..."></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Date Wo</ion-label>
+    <ion-datetime (ionChange)="onChange($event)" displayFormat="DD MMMM YYYY" pickerFormat="DD/MMMM/YYYY" [(ngModel)]="date_wo"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Nik Naker</ion-label>
+ 
+      <ion-label (click)="showModel()">
+      {{ nik_bawahan }}
+    </ion-label>  
+  </ion-item>
+
+
+
+</ion-list>
+
+<button  ion-button full (click)="SubmitWo()"   color="light" >Submit</button>
+
+</ion-content>

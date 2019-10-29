@@ -1,0 +1,36 @@
+<ion-header>
+
+</ion-header>
+
+
+<ion-content padding>
+
+<ion-list>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div align="center">
+<img src="AMALIA.png" style="height: 200px" />
+</div>
+  <ion-item>
+    <ion-label fixed><font  color="#303133">Username</font></ion-label>
+    <ion-input type="text" value="" [(ngModel)]="username"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed><font  color="#303133">Password</font></ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  <button color="light" ion-button full (click)="putLogin()">Login</button>
+  <br/>
+  <br/>
+  <br/>
+  <i>Versi {{versi}}</i>
+
+</ion-list>
+</ion-content>
+

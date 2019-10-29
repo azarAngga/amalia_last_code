@@ -1,0 +1,12 @@
+page-map {
+
+#map_canvas{
+	height: 85%;
+}
+
+ion-app._gmaps_cdv_ .ion-page:not(._gmaps_cdv_),
+ion-app._gmaps_cdv_ ion-modal:not(._gmaps_cdv_) {
+    display: none;
+}
+
+}

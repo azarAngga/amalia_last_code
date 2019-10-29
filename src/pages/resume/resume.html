@@ -63,15 +63,12 @@
               </td>
             </tr>
             <tr>
-              <td>
+              <td colspan="3">
+                <hr/>
                 Hasil Test Layanan
+                <hr/>
               </td>
-              <td>
-                :
-              </td>
-              <td>
-                  {{hasil_test_layanan}}
-              </td>
+              
             </tr>
             <tr>
               <td>
@@ -81,7 +78,8 @@
                 :
               </td>
               <td>
-                  Baik / Tidak
+                  <div *ngIf="test_voice == '1'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
+                  <div *ngIf="test_voice == '0'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
               </td>
             </tr>
             <tr>
@@ -92,7 +90,9 @@
                 :
               </td>
               <td>
-                  Baik / Tidak
+                  <div *ngIf="test_internet == '1'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
+                  <div *ngIf="test_internet == '0'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
+                  
               </td>
             </tr>
             <tr>
@@ -103,7 +103,8 @@
                 :
               </td>
               <td>
-                Baik / Tidak
+                  <div *ngIf="test_use_tv == '1'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
+                  <div *ngIf="test_use_tv == '0'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
               </td>
             </tr>
           </table>
@@ -128,4 +129,29 @@
         <td align="center"  width="50%"><div (click)="openSignatureModel2()"  style="border-color: grey;border-style: dashed;width: 150px;height: 100px" ><img *ngIf="signatureImage2" style="width: 100px;height: 100px" [src]="signatureImage2" ></div></td>
       </tr>
     </table>
+
+    <br/>
+	<br/>
+	<br/>
+
+    <table width="100%">
+		<tr>
+			<td>
+				<div align="left" style="margin-left: -15px">
+				  <br/>
+				  <button class="button" (click)="actionBack()" right>&nbsp;< Back&nbsp;</button>
+				</div>
+			</td>
+			<td width="40%">
+				&nbsp;
+			</td>
+			<td>
+				<div align="right" style="margin-right: -10px">
+				  <br/>
+				  <img *ngIf="loader_gif == 'on'" src="loader.gif" />
+				  <button *ngIf="loader_gif == 'off'"  class="button" (click)="actionPut()" right>Next</button>
+				</div>
+			</td>
+		</tr>
+	</table>
 </ion-content>

@@ -1,0 +1,17 @@
+<ion-content>
+<ion-item>
+    <ion-label fixed>{{string_placeholder}}</ion-label>
+    <ion-input [(ngModel)]="search" placeholder="..." (keyup.enter)="searchAction()" type="text" value=""></ion-input>
+</ion-item>
+<button color="light" ion-button full (click)="searchAction()">Search</button>
+<ion-list>
+
+  <ion-item  style="background-color:#000066;"  *ngFor="let item of items" (click)="dismiss(item)">		
+  <font color="white"><b>{{ item }}</b></font>
+  		
+    
+  </ion-item>
+
+</ion-list>
+
+</ion-content>

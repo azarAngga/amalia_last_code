@@ -50,6 +50,8 @@
     </ion-card>
     </div>
 
+    <br/>
+
   <ion-item (click)="presentProfileModal('mitra')" *ngIf="view_nama_mitra == 2">
      <ion-label stacked><font color="black">Nama Mitra</font></ion-label>
     <ion-input placeholder="Tulis sesuatu"  disabled [(ngModel)]="nama_mitra" style="color:grey" ></ion-input>
@@ -145,13 +147,35 @@
 
   <ion-item>
     <ion-label stacked><font color="black">Alamat Pelanggan</font></ion-label>
-    <ion-textarea rows="6" cols="20" placeholder="Tulis Disini : Nama Gang, RT/RW dan tanda / referensi alamat sekitar" [(ngModel)]="alamat_pelanggan" style="color:grey"></ion-textarea>
+    <ion-textarea rows="6" cols="20" placeholder="Tulis sesuatu" [(ngModel)]="alamat_pelanggan" style="color:grey"></ion-textarea>
   </ion-item>
 
+    <div style="margin-left: 18px;">
+        <ion-label stacked><font color="black">RT / RW</font></ion-label>
+    </div>
+    <table style="margin-left: 10px;">
+      <tr>
+        <td>  
+          <ion-input type="number" placeholder="Tulis sesuatu" [(ngModel)]="rt" style="color:grey"></ion-input>
+        </td>
+        <td>
+            &nbsp;/&nbsp;
+        </td>
+        <td>
+            <ion-input type="number" placeholder="Tulis sesuatu" [(ngModel)]="rw" style="color:grey"></ion-input>
+        </td>
+      </tr>
+    </table>
+
   <ion-item>
-    <ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
-    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="nama_pelanggan" style="color:grey"></ion-input>
-  </ion-item>  
+    <ion-label stacked><font color="black">Kelurahan</font></ion-label>
+    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="kelurahan" style="color:grey"></ion-input>
+  </ion-item> 
+  
+  <ion-item>
+    <ion-label stacked><font color="black">Kecamatan</font></ion-label>
+    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="kecamatan" style="color:grey"></ion-input>
+  </ion-item> 
     
   </div>
 
@@ -276,11 +300,13 @@
       <ion-segment-button value="order" style="background: DeepSkyBlue;border-top-left-radius: 10px;border-bottom-left-radius: 10px">
        <font color="white">ORDER</font> 
       </ion-segment-button>
-      <ion-segment-button value="datek" style="background: DeepSkyBlue">
+
+      <!-- <ion-segment-button value="datek" style="background: DeepSkyBlue">
         <font color="white"> DATEK </font>
-      </ion-segment-button>
-      <ion-segment-button value="material" style="background: DeepSkyBlue;border-top-right-radius: 10px;border-bottom-right-radius: 10px">
-        <font color="white">  MATERIAL </font>
+      </ion-segment-button> -->
+
+      <ion-segment-button value="datek" style="background: DeepSkyBlue;border-top-right-radius: 10px;border-bottom-right-radius: 10px">
+        <font color="white">  DATEK </font>
       </ion-segment-button>
     </ion-segment>
   </div>

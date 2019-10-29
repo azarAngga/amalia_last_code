@@ -41,6 +41,8 @@ export class Pemakaian4Page {
   data: any;
   data2: any;
   data3: any;
+  data4: any;
+  data_foto: any;
   uri_api_alista: any;
   uri_app_amalia: any;
   uri_api_wimata: any;
@@ -103,6 +105,12 @@ export class Pemakaian4Page {
             console.log('con', val);
             this.data3 = val;
           });
+
+
+          this.storage.get('data_foto').then((val) => {
+            console.log('con', val);
+            this.data_foto = val;
+          });
         });
       });
     }
@@ -147,15 +155,8 @@ export class Pemakaian4Page {
   }
 
   actionPut(){ 
-    if(this.tempat_ttd == undefined){
-        this.showAlert("Kolom Kota tidak boleh kosong");
-    }else if(this.signatureImage1 == undefined){
-        this.showAlert("Tanda tangan pelanggan tidak boleh kosong");
-    }else if(this.signatureImage2 == undefined){
-        this.showAlert("Tanda tangan pelanggan tidak boleh kosong");
-    }else{
+    
       var data4 = {
-            nik:this.nik,
             kendala:this.kendala,
             alasan_decline:this.alasan_decline,
             harga:this.harga,
@@ -164,12 +165,12 @@ export class Pemakaian4Page {
             menggunakan_isp_view:this.menggunakan_isp_view,
             url_ttd_pelanggan:this.nama_signature+"_1_"+this.sum_pelanggan+".png",
             url_ttd_mitra:this.nama_signature+"_2_"+this.sum_mitra+".png",
-            denah:this.nama_signature+"_denah_+"+this.sum_denah+".png",}
+            denah:this.nama_signature+"_denah_+"+this.sum_denah+".png"}
 
-            this.storage.set('data4',data4);
-            this.navCtrl.push(FotoPage);
+            this.storage.set('data5',data4);
 
-    }
+            this.navCtrl.setRoot(FotoPage);
+    
   }
 
   upload(nama,path){
