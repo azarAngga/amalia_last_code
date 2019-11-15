@@ -80,7 +80,7 @@
 
    <ion-item>
     <ion-label fixed>SC -</ion-label>
-    <ion-input [(ngModel)]="no_permintaan" type="number"  value="" placeholder="Tulis sesuatu"></ion-input>
+    <ion-input [(ngModel)]="no_permintaan" type="number"  value="" disabled  (click)="presentProfileModal('no_wo')" placeholder="Tulis sesuatu"></ion-input>
   </ion-item>
 
   <br/>
@@ -125,8 +125,15 @@
     <ion-label stacked><font color="black">No Telepon Layanan</font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_telepon"  type="number" style="color:grey"></ion-input>
   </ion-item>
-   <ion-item>
-    <ion-label stacked><font color="black">No Inet</font></ion-label>
+
+
+   <ion-item *ngIf="disabled !='ok'">
+    <ion-label stacked><font color="black">No Inet </font></ion-label>
+    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_inet"  type="number" style="color:grey"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="disabled =='ok'">
+    <ion-label stacked><font color="black">No Inet </font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_inet"  type="number" style="color:grey"></ion-input>
   </ion-item>
 
@@ -140,9 +147,14 @@
     <ion-datetime  displayFormat="MMM DD, YYYY" (ionChange)="changeEnd($event)"  [(ngModel)]="tanggal_selesai" style="color:grey" ></ion-datetime>
   </ion-item>
   
-   <ion-item>
+  <ion-item *ngIf="disabled_nama !='ok'">
     <ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="nama_pelanggan" style="color:grey"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="disabled_nama =='ok'">
+    <ion-label stacked><font color="black">Nama Pelanggan</font></ion-label>
+    <ion-input placeholder="Tulis sesuatu" disabled [(ngModel)]="nama_pelanggan" style="color:grey"></ion-input>
   </ion-item>
 
   <ion-item>

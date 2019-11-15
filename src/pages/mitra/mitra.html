@@ -1,17 +1,28 @@
+
 <ion-content>
-<ion-item>
+  <h3> < </h3>
+ <ion-item>
     <ion-label fixed>{{string_placeholder}}</ion-label>
     <ion-input [(ngModel)]="search" placeholder="..." (keyup.enter)="searchAction()" type="text" value=""></ion-input>
 </ion-item>
 <button color="light" ion-button full (click)="searchAction()">Search</button>
-<ion-list>
+<ion-list *ngIf=" sto!= 'no_wo'">
 
   <ion-item  style="background-color:#000066;"  *ngFor="let item of items" (click)="dismiss(item)">		
   <font color="white"><b>{{ item }}</b></font>
-  		
-    
+  
   </ion-item>
 
+</ion-list>
+
+
+<ion-list *ngIf=" sto == 'no_wo'">
+
+  <ion-item  style="background-color:#000066;"  *ngFor="let item of items" (click)="dismiss_wo(search,item.no_telfon,item.nama,item.alamat)">		
+    <font color="white"><b style="text-transform: uppercase;">{{search}} / {{ item.nama }}</b></font>
+  
+  </ion-item>
+  
 </ion-list>
 
 </ion-content>

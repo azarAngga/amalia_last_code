@@ -21,6 +21,7 @@ import { PemakaianPage } from "../pemakaian/pemakaian";
 export class ResumePage {
 
   sum_pelanggan: any=0;
+  nik: any;
   loader_gif: any = 'off';
   signatureImage1 : any;
   loader: any;
@@ -33,8 +34,8 @@ export class ResumePage {
   type_layanan: any;
   hasil_test_layanan: any;
   test_voice: any;
-  test_internet: any;
-  test_use_tv:any;
+  test_internet: any = "-";
+  test_use_tv:any = "-";
   tanggal_ttd: any;
   tempat_ttd: any;
 
@@ -76,45 +77,59 @@ export class ResumePage {
        })
 
        this.storage.get('data2').then((val)=>{
-        if(val.psb != undefined){
-          if(val.psb == "1"){
-            this.type_layanan = "1P"
-          }else if(val.psb == "2"){
-            this.type_layanan = "2P"
-          }else if(val.psb == "3"){
+         
+        if(val.psb != undefined && val.psb > 0){
+          if(val.psb == "4"){
+            this.type_layanan = "1P [Voice Only]"
+          }else if(val.psb == "5"){
+            this.type_layanan = "1P [Internet Only]"
+          }else if(val.psb == "6"){
+            this.type_layanan = "2P [Internet + Voice]"
+          }else if(val.psb == "7"){
+            this.type_layanan = "2P [Internet + UseeTv]"
+          }else{
             this.type_layanan = "3P"
+
           }
-        }else if(val.migrasi != undefined){
+        }else if(val.migrasi != undefined  && val.migrasi > 0){
           if(val.migrasi == "1"){
             this.type_layanan = "Infrastruktur"
-          }else if(val.migrasi == "4"){
-            this.type_layanan = "Infrastruktur 1P - 1P"
+          }else if(val.migrasi == "11"){
+            this.type_layanan = "Infrastruktur 1P-1P [Voice ]"
           
-          }else if(val.migrasi == "10"){
-            this.type_layanan = "Layanan 1P-2P"
+          }else if(val.migrasi == "13"){
+            this.type_layanan = "Layanan 1P-2P [Voice + Internet]"
           
-          }else if(val.migrasi == "5"){
-            this.type_layanan = "Infrastruktur 1P - 2P"
-          
-          }else if(val.migrasi == "2"){
-            this.type_layanan = "Layanan 1P-3P"
-          
-          }else if(val.migrasi == "6"){
-            this.type_layanan = "Infrastruktur 1P - 3P"
-          
-          }else if(val.migrasi == "3"){
-            this.type_layanan = "Layanan 2P-3P"
-          
-          }else if(val.migrasi == "7"){
-            this.type_layanan = "Infrastruktur 2P - 2P"
+          }else if(val.migrasi == "15"){
+            this.type_layanan = "Infrastruktur 2P-2P [Voice + Internet]"
           
           }else if(val.migrasi == "8"){
-            this.type_layanan = "Infrastruktur 2P - 3P"
+            this.type_layanan = "Infrastruktur 2P-3P"
+          
+          }else if(val.migrasi == "6"){
+            this.type_layanan = "Infrastruktur 1P-3P"
+          
+          }else if(val.migrasi == "12"){
+            this.type_layanan = "Infrastruktur 1P-1P [Internet]"
+          
+          }else if(val.migrasi == "14"){
+            this.type_layanan = "Infrastruktur 1P - 2P [Internet + UseeTv]"
+          
+          }else if(val.migrasi == "16"){
+            this.type_layanan = "Infrastruktur 2P - 2P [Internet + UseeTv]"
           
           }else if(val.migrasi == "9"){
             this.type_layanan = "Infrastruktur 3P - 3P"
+          }else if(val.migrasi == "20"){
+            this.type_layanan = "Layanan 1P-2P [Internet + Voice]"
+          }else if(val.migrasi == "21"){
+            this.type_layanan = "Layanan 1P-2P [Internet + UseeTv]"
+          }else if(val.migrasi == "3"){
+            this.type_layanan = "Layanan 2P-3P "
+          }else if(val.migrasi == "2"){
+            this.type_layanan = "Layanan 1P-3P "
           }
-        }else if(val.tambahan != undefined){
+        }else if(val.tambahan != undefined && val.tambahan > 0){
           if(val.tambahan == "1"){
             this.type_layanan = "Change STB"
           }else if(val.tambahan == "2"){
@@ -131,12 +146,23 @@ export class ResumePage {
 
       this.storage.get('nik').then(val =>{
         this.nama_signature = year+""+month+""+day+""+hours+""+minutes+""+val;
+        this.nik = val
       })
 
       this.storage.get('data4').then((val)=>{
-        this.test_voice = val.test_voice
-        this.test_internet = val.test_internet
-        this.test_use_tv = val.test_use_tv
+        //alert(val.test_internet)
+        if(val.test_voice != undefined){
+          this.test_voice = val.test_voice
+        }
+
+        if(val.test_internet != undefined){
+          this.test_internet = val.test_internet
+        }
+
+        if(val.test_use_tv != undefined){
+          this.test_use_tv = val.test_use_tv
+        }
+
         console.log('con4', val);
       })
 
@@ -155,6 +181,7 @@ export class ResumePage {
 
       this.storage.get('data4').then((val) => {
         this.data4 = val;
+        console.log(val)
       });
 
       this.storage.get('data5').then((val) => {
@@ -265,6 +292,7 @@ actionPut(){
           +"&ttd1="+this.nama_signature+"_1_"+this.sum_pelanggan+".png"
           +"&ttd2="+this.nama_signature+"_2_"+this.sum_mitra+".png"
           +"&tempat_ttd="+this.tempat_ttd
+          +"&nik="+this.nik
           +"&versi="+this.uri.versi; 
           console.log(ini)
           this.http.get(ini)

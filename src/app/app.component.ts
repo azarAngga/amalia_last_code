@@ -31,7 +31,6 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any;
-
   nama: any;
   jabatan: any; 
   foto: any;
@@ -51,6 +50,9 @@ export class MyApp {
         if(this.foto == null){
             this.foto = "";
         }
+
+        
+        
       });
 
       this.events.subscribe('menu:tampil', (menu) => {
@@ -71,13 +73,13 @@ export class MyApp {
             ];
               console.log('tampil', val);
               //this.rootPage = FotoPage;
-              this.rootPage = MaterialPage;
+              this.rootPage = Pemakaian3Page;
               //this.rootPage = Pemakaian4Page;
           }else{
               console.log('login', val);
               //this.rootPage = FotoPage;
               // this.rootPage = LoginPage;
-              this.rootPage = MaterialPage;
+              this.rootPage = LoginPage;
           }
     });
   }

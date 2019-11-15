@@ -11,6 +11,25 @@
 </ion-header>
 
 <ion-content padding>
+    <div align="center">
+        <label><font color="red">LAPORAN PENYELESAIAN PEKERJAAN INSTALASI PASANG BARU/MIGRASI</font></label>
+      </div>
+      <ion-card >
+        <ion-card-header>
+          <font color="red">Disclaimer</font>
+        </ion-card-header>
+        <ion-card-content>
+            1.Perangkat (ONT/Modem/STB) yang dipasang pelanggan adalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali <br/><br/>
+            2.TELKOM dapat mengambil Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali
+            3.Untuk progress pemiliharaan monitoring, diharapkan power perangkat selalu dalam kondisi hidup (ON)<br/><br/>
+            4.Disarankan untuk segera merubah password yang ada untuk menjaga agar tidak dipergunakan pihak-pihak yang tidak dikehendaki.<br/><br/>
+            5.Pelanggan sudah mendapatkan penjelasan dan sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang 
+        </ion-card-content>
+    </ion-card>
+
+    <br/>
+    <br/>
+
     <ion-card width="100%">
         <ion-card-header>
           <b>Resume</b>
@@ -70,7 +89,7 @@
               </td>
               
             </tr>
-            <tr>
+            <tr *ngIf="test_voice != '-'">
               <td>
                 Test Voice 
               </td>
@@ -78,11 +97,11 @@
                 :
               </td>
               <td>
-                  <div *ngIf="test_voice == '1'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
-                  <div *ngIf="test_voice == '0'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
+                  <div *ngIf="test_voice == '0'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
+                  <div *ngIf="test_voice == '1'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="test_internet != '-'">
               <td>
                 Test Internet
               </td>
@@ -90,12 +109,13 @@
                 :
               </td>
               <td>
-                  <div *ngIf="test_internet == '1'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
-                  <div *ngIf="test_internet == '0'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
+                  <div *ngIf="test_internet == '0'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
+                  <div *ngIf="test_internet == '1'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
+                  <!-- <div *ngIf="test_internet == '-'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div> -->
                   
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="test_use_tv != '-'">
               <td>
                 Test Usee TV
               </td>
@@ -103,8 +123,8 @@
                 :
               </td>
               <td>
-                  <div *ngIf="test_use_tv == '1'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
-                  <div *ngIf="test_use_tv == '0'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
+                  <div *ngIf="test_use_tv == '0'"><b style="text-decoration:line-through">Baik</b>  / <b>Tidak</b></div>
+                  <div *ngIf="test_use_tv == '1'"><b >Baik</b>  / <b style="text-decoration:line-through">Tidak</b></div>
               </td>
             </tr>
           </table>

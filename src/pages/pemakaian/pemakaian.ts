@@ -76,6 +76,8 @@ export class PemakaianPage {
 	jumlah_breket_v: any ="";
 	jumlah_klem_ring_v: any ="";
 	jumlah_tiang_telpn_v: any ="";
+	disabled: any ="nok";
+	disabled_nama: any ="nok";
 
 	view_nama_mitra: any = 1;
 	perusahaan: any = "telkom akses";
@@ -141,16 +143,28 @@ export class PemakaianPage {
 
    presentProfileModal(x) {
 
-   		let profileModal = this.modalCtrl.create(MitraPage, { sto:x,witel:this.witel });
+   		let profileModal = this.modalCtrl.create(MitraPage, { sto:x,witel:this.witel,nik:this.nik });
    		profileModal.onDidDismiss(data => {
 		     console.log("inii"+data.data);
 		     if(data.jenis == 'mitra'){
 		     	this.nama_mitra = data.data;
 		     }else if(data.jenis == 'witel'){
 				this.witel = data.data;
-		     }else{
+		     }else if(data.jenis == "sto"){
 		     	this.sto = data.data;
-		     }
+		     }else if(data.jenis == "no_wo"){
+				 alert(data.data.no_wo)
+				this.no_wo = data.data.no_wo;
+				this.no_permintaan = data.data.no_wo;
+				this.no_inet = data.data.no_telepon
+				this.nama_pelanggan = data.data.nama
+				this.alamat_pelanggan = data.data.alamat;
+
+				if(data.data.nama != ""){
+					this.disabled_nama = "ok"
+				}
+				
+			 }
 		     
 		});
    		profileModal.present();

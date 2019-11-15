@@ -16,11 +16,14 @@ import { LoadingController } from 'ionic-angular';
   selector: 'page-mitra',
   templateUrl: 'mitra.html',
 })
+
 export class MitraPage {
   nama_mitra: any;
   items: any;
   loader: any;
   search: any;
+  no_wo: any;
+  nik: any;
   sto: any;
   witel: any;
   string_placeholder: any;
@@ -29,12 +32,15 @@ export class MitraPage {
       console.log('sto', navParams.get('sto'));
       this.sto = navParams.get('sto');
       this.witel = navParams.get('witel'); 
+      this.nik = navParams.get('nik'); 
       if(this.sto == "witel"){
         this.string_placeholder = "Witel";
       }else if( this.sto == "sto"){
         this.string_placeholder = "STO";
-      }else{
+      }else if(this.sto == "mitra"){
         this.string_placeholder = "Mitra";
+      }else if(this.sto == "no_wo"){
+        this.string_placeholder = "No Wo";
       }
 	
   }
@@ -44,14 +50,29 @@ export class MitraPage {
   }
 
   loadData(){
-     console.log(this.uri.uri_api+"master/get_data_all_master_mitra.php?nama="+this.search+"&jenis="+this.sto+"&witel="+this.witel);
+    let url = ""
+    if(this.sto == "no_wo"){
+      url = this.uri.uri_app_amalia+"/telkom_no_wo.php?no_wo="+this.search+"&nik="+this.nik;
+    }else{
+       url = this.uri.uri_api+"master/get_data_all_master_mitra.php?nama="+this.search+"&jenis="+this.sto+"&witel="+this.witel;
+    }
+    
+     console.log(url);
       this.loading();
-      this.http.get(this.uri.uri_api+"master/get_data_all_master_mitra.php?nama="+this.search+"&jenis="+this.sto+"&witel="+this.witel)
+      this.http.get(url)
       .map(res => res.json())
       .subscribe(data => {
-      	this.json_data_vendor2 = data.mitra;
-      	this.initializeItems();
+        if(this.sto == "no_wo"){
+          this.json_data_vendor2 = data.data;
+          this.initializeItems();
+        }else{
+          this.json_data_vendor2 = data.mitra;
+          this.initializeItems();
+         
+        }
+
         this.loader.dismiss();
+      	
       });
   }
 
@@ -87,6 +108,17 @@ export class MitraPage {
  dismiss(x) {
    let data = { 'data': x,'jenis':this.sto };
    this.viewCtrl.dismiss(data);
+ }
+
+ dismiss_wo(no_wo: any,no_telfon: any,nama: any,alamat: any){
+  let isi ={
+    no_wo: no_wo,
+    no_telfon: no_telfon,
+    nama: nama,
+    alamat: alamat
+  }
+  let data = { 'data': isi,'jenis':this.sto };
+  this.viewCtrl.dismiss(data);
  }
 
  loading(){

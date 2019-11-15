@@ -505,6 +505,7 @@ data4: any;
             date_8:this.date_8,
             date_9:this.date_9,
             date_10:this.date_10,
+            pilihan:this.pilihan,
 
         }
 

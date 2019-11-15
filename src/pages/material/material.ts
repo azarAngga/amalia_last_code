@@ -152,6 +152,7 @@ export class MaterialPage {
               volume_m2.push(this.modeKeys[idx]);
             }
             }catch(error){
+              
             }
 
             var data_new = {

@@ -199,19 +199,35 @@
 	  </ion-card-header>
 
 	  <ion-card-content>
-	  	<ion-list radio-group [(ngModel)]="psb">
+	  	<ion-list radio-group [(ngModel)]="psb" >
 	    <table width="100%">
 	    	<tr>
 	    		<td width="50%">
-		    		<ion-radio  checked="true" value="1"></ion-radio> 1P
+		    		<!-- <ion-radio  checked="true" value="1"></ion-radio> 1P -->
+		    		<ion-radio (click)="psbClick('4')"  checked="true" value="4"></ion-radio> 1P [Voice Only]
 				</td>
 				<td>
-					<ion-radio value="2"></ion-radio> 2P
+						<!-- <ion-radio value="2"></ion-radio> 2P -->
+						<ion-radio (click)="psbClick('5')"  value="5"></ion-radio> 1P [Internet Only]
+					</td>
+			<tr>
+					<td>
+						<!-- <ion-radio value="2"></ion-radio> 2P -->
+						<ion-radio (click)="psbClick('6')"  value="6"></ion-radio> 2P [Voice + Internet]
+					</td>
+					<td>
+						<!-- <ion-radio value="2"></ion-radio> 2P -->
+						<ion-radio (click)="psbClick('7')"  value="7"></ion-radio> 2P [Internet + UseeTv]
+					</td>
+			</tr>	
+			<tr>
+				<td>
+					<!-- <ion-radio   value="3"></ion-radio> 3P -->
+					<ion-radio (click)="psbClick('3')"  value="3"></ion-radio> 3P
 				</td>
-		    	<td>
-		    		<ion-radio   value="3"></ion-radio> 3P
-		    	</td>
-	    	</tr>
+			</tr>	
+		    	
+	    	
 	    </table>
 		</ion-list>
 	  </ion-card-content>
@@ -230,50 +246,77 @@
 	    <table width="100%">
 	    	<tr hidden>
 	    		<td width="50%">
-		    		<ion-radio checked="true" value="1"></ion-radio> Infrastruktur
+		    		<ion-radio  (click)="migrasiClick('1')" value="1"></ion-radio> Infrastruktur
 		    	</td>
 		    </tr>
 		    <tr >
 	    		<td width="50%">
-		    		<ion-radio checked="true" value="4"></ion-radio>  Infrastruktur 1P - 1P
+		    		<ion-radio (click)="migrasiClick('11')"  value="11"></ion-radio>  Infrastruktur 1P-1P [Voice]
 		    	</td>
 		    	<td>
-		    		<ion-radio  value="10"></ion-radio> Layanan 1P-2P
+		    		<ion-radio (click)="migrasiClick('20')" value="20"></ion-radio> Layanan 1P-2P [Voice + Internet]
 		    	</td>
 
 		    </tr>
 		    <tr>
 		    	<td width="50%">
-		    		<ion-radio checked="true" value="5"></ion-radio>  Infrastruktur 1P - 2P
+						<ion-radio (click)="migrasiClick('12')"  value="12"></ion-radio>  Infrastruktur 1P-1P [Internet]
 		    	</td>
 		    	<td>
-		    		<ion-radio  value="2"></ion-radio> Layanan 1P-3P
+		    		<ion-radio (click)="migrasiClick('21')" value="21"></ion-radio> Layanan 1P-2P [Internet + UseeTv]
 		    	</td>
 	    	</tr>
 	    	<tr>
 	    		<td width="50%">
-		    		<ion-radio checked="true" value="6"></ion-radio>  Infrastruktur 1P - 3P
+						<ion-radio (click)="migrasiClick('13')" value="13"></ion-radio>  Infrastruktur 1P-2P [Internet + Voice ]
+						
+		    		<!-- <ion-radio (click)="migrasiClick('6')" checked="true" value="6"></ion-radio>  Infrastruktur 1P-3P -->
 		    	</td>
 		    	<td>
-		    		<ion-radio  value="3"></ion-radio> Layanan 2P-3P
+						<ion-radio (click)="migrasiClick('2')"  value="2"></ion-radio> Layanan 1P-3P
 		    	</td>
 	    	</tr>
 	    	<tr>
 	    		<td width="50%">
-		    		<ion-radio checked="true" value="7"></ion-radio>  Infrastruktur 2P - 2P
+						<ion-radio (click)="migrasiClick('14')" value="14"></ion-radio>  Infrastruktur 1P-2P [Internet + UseeTv ]
+		    		
 		    	</td>
 		    	<td>
+						<ion-radio (click)="migrasiClick('3')"  value="3"></ion-radio> Layanan 2P-3P
+						<!-- <ion-radio checked="true" (click)="migrasiClick('15')" value="15"></ion-radio>  Infrastruktur 2P - 2P [Internet + UseeTv] -->
+
 		    	</td>
-	    	</tr>
+			</tr>
+			
+			<tr>
+					<td width="50%">
+						<ion-radio checked="true" (click)="migrasiClick('15')" value="15"></ion-radio>  Infrastruktur 2P-2P [Internet + Voice]
+						
+					</td>
+					<td>
+							<!-- <ion-radio (click)="migrasiClick('3')"  value="3"></ion-radio> Layanan 2P-3P -->
+							<!-- <ion-radio checked="true" (click)="migrasiClick('15')" value="15"></ion-radio>  Infrastruktur 2P - 2P [Internet + UseeTv] -->
+	
+					</td>
+				</tr>
 	    	<tr>
 	    		<td width="50%">
-		    		<ion-radio checked="true" value="8"></ion-radio>  Infrastruktur 2P - 3P
+						<ion-radio checked="true" (click)="migrasiClick('16')" value="16"></ion-radio>  Infrastruktur 2P-2P [Internet + UseeTv]
+		    		
 		    	</td>
 		    	<td></td>
 	    	</tr>
 	    	<tr>
 	    		<td width="50%">
-		    		<ion-radio checked="true" value="9"></ion-radio>  Infrastruktur 3P - 3P
+						<ion-radio checked="true" (click)="migrasiClick('8')" value="8"></ion-radio>  Infrastruktur 2P - 3P
+		    		
+		    	</td>
+		    	<td></td>
+	    	</tr>
+	    	<tr>
+	    		<td width="50%">
+						<ion-radio checked="true" (click)="migrasiClick('9')" value="9"></ion-radio>  Infrastruktur 3P - 3P
+		    		
 		    	</td>
 		    	<td></td>
 	    	</tr>
@@ -296,10 +339,10 @@
 		  <table width="100%">
 			  <tr>
 				  <td width="50%">
-					<ion-radio value="1"></ion-radio> Change STB
+					<ion-radio (click)="tambahanClick('1')" value="1"></ion-radio> Change STB
 				  </td>
 				  <td>
-					<ion-radio  value="2"></ion-radio> STB Tambahan
+					<ion-radio (click)="tambahanClick('2')"  value="2"></ion-radio> STB Tambahan
 				  </td>
 				  <td>
 					  
@@ -307,15 +350,15 @@
 			  </tr>
 			  <tr>
 				  <td>
-					<ion-radio  value="3"></ion-radio> PLC
+					<ion-radio (click)="tambahanClick('3')"  value="3"></ion-radio> PLC
 				  </td>
 				  <td>
-					  <ion-radio  value="4"></ion-radio> Wifi Extender
+					  <ion-radio (click)="tambahanClick('4')" value="4"></ion-radio> Wifi Extender
 				  </td>
 			  </tr>
 			  <tr>
 				  <td>
-					  <ion-radio value="5"></ion-radio> IndiBox
+					  <ion-radio (click)="tambahanClick('5')" value="5"></ion-radio> IndiBox
 				  </td>
 				  <td>
 					  
@@ -341,42 +384,42 @@
 	    <table width="100%">
 	    	<tr>
 	    		<td width="50%">
-		    		<ion-radio checked="true" value="1"></ion-radio> 10MB
+		    		<ion-radio (click)="speedClick('1')" value="1"></ion-radio> 10MB
 		    	</td>
 		    	<td>
-						<ion-radio  value="2"></ion-radio> 20MB
+					<ion-radio  (click)="speedClick('2')" value="2"></ion-radio> 20MB
 		    		
 		    	</td>
 	    	</tr>
 	    	<tr>
 	    		<td>
-						<ion-radio  value="3"></ion-radio> 30MB
+						<ion-radio (click)="speedClick('3')"  value="3"></ion-radio> 30MB
 		    	</td>
 		    	<td>
-						<ion-radio  value="4"></ion-radio> 40MB
+						<ion-radio (click)="speedClick('4')"  value="4"></ion-radio> 40MB
 		    		
 		    	</td>
 	    	</tr>
 	    	<tr>
 	    		<td>
-						<ion-radio  value="5"></ion-radio> 50MB
+						<ion-radio  (click)="speedClick('5')" value="5"></ion-radio> 50MB
 		    	</td>
 		    	<td>
 					
-		    		<ion-radio  value="10"></ion-radio> 100MB
+		    		<ion-radio (click)="speedClick('10')" value="10"></ion-radio> 100MB
 		    	</td>
 	    	</tr>
 	    	<tr>
 	    		<td>
-		    		<ion-radio  value="11"></ion-radio> 200MB
+		    		<ion-radio (click)="speedClick('11')" value="11"></ion-radio> 200MB
 		    	</td>
 		    	<td>
-		    		<ion-radio  value="12"></ion-radio> 300MB
+		    		<ion-radio (click)="speedClick('12')" value="12"></ion-radio> 300MB
 		    	</td>
 	    	</tr>
 	    	<tr>
 	    		<td>
-		    		<ion-radio  value="13"></ion-radio> 1GB
+		    		<ion-radio (click)="speedClick('13')" value="13"></ion-radio> 1GB
 		    	</td>
 		    	<td>
 		    		&nbsp;

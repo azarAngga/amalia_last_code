@@ -37,6 +37,10 @@ export class Pemakaian3Page {
  	mac_address: any;
   sn_plc: any;
   sn_wifi_extender: any;
+  psb_before: any= 0;
+  migrasi_before: any= 0;
+  tambahan_before: any= 0;
+  speed_before: any= 0;
 
   speed_other: any;
  	nama: any;
@@ -44,7 +48,7 @@ export class Pemakaian3Page {
  	psb: any;
  	migrasi: any;
  	tambahan: any;
- 	speed: any ='1';
+ 	speed: any;
 
  	other: any;
   atribut: any;
@@ -123,6 +127,41 @@ export class Pemakaian3Page {
   }
 
 
+  psbClick(val: any){
+      if(val == this.psb_before){
+        this.psb_before = 0;
+        this.psb = 0;
+      }else{
+        this.psb_before = val;
+      }
+  }
+  
+  migrasiClick(val: any){
+      if(val == this.migrasi_before){
+        this.migrasi_before = 0;
+        this.migrasi = 0;
+      }else{
+        this.migrasi_before = val;
+      }
+  }
+
+  tambahanClick(val: any){
+      if(val == this.tambahan_before){
+        this.tambahan_before = 0;
+        this.tambahan = 0;
+      }else{
+        this.tambahan_before = val;
+      }
+  }
+  
+  speedClick(val: any){
+      if(val == this.speed_before){
+        this.speed_before = 0;
+        this.speed = 0;
+      }else{
+        this.speed_before = val;
+      }
+  }
 
   actionWifi(){
     this.barcodeScanner.scan().then((barcodeData) => {
@@ -154,8 +193,8 @@ export class Pemakaian3Page {
           this.storage.set('data2',data_var);
           this.navCtrl.push(MaterialPage);
         }else{
-          this.psb = "0";
-          this.migrasi = "0";
+          //this.psb = "0";
+          //this.migrasi = "0";
           alert(data.message);
         }
 

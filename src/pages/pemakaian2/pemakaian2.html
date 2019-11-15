@@ -42,7 +42,7 @@
 							</table>
 						</td>
 					</tr>
-					<tr class="only_border_top">
+					<tr *ngIf="psb == '4' || psb == '6' || psb == '3' || migrasi  == '11' || migrasi  == '13' || migrasi  == '15' || migrasi  == '9' ||  migrasi == '8' ||  migrasi == '6' ||  migrasi == '20' ||  migrasi == '2' ||  migrasi == '3' " class="only_border_top">
 						<!-- <td > &nbsp;Test Voice</td>
 						<td>&nbsp;Call</td> -->
 						<td colspan="2">
@@ -55,28 +55,28 @@
 							<tr>
 								<td width="50%" align="center">
 									
-						                <ion-radio style="margin-top: 20px"  value="1" ></ion-radio>
+						                <ion-radio (click)="voiceClick('1')" style="margin-top: 20px"  value="1" ></ion-radio>
 						            
 								</td>
 								<td width="50%" align="center">
 									
-						                <ion-radio style="margin-top: 20px"  value="0" ></ion-radio>
-						           
+						                <ion-radio (click)="voiceClick('0')" style="margin-top: 20px"  value="0" ></ion-radio>
+			
 								</td>
 							</tr>
 							</table>
 							</ion-list>
 						</td>
 					</tr>
-					<tr class="only_border_top">
+					<tr *ngIf="psb == '3' || psb == '5' || psb == '6' || psb == '7' ||  migrasi == '13' ||  migrasi == '15' ||  migrasi == '8' ||  migrasi == '6' ||  migrasi == '12' ||  migrasi == '14' ||  migrasi == '16' ||  migrasi == '9' ||  migrasi == '20' ||  migrasi == '21' ||  migrasi == '3' ||  migrasi == '2'" class="only_border_top">
 						<!-- <td>&nbsp;Test Internet</td>
 						<td>&nbsp;Https://wwww.</td> -->
 						<td colspan="2">
-								<label>Test Internet</label>
-								<ion-input color="red" type="text" [(ngModel)]="test_internet_val" placeholder="Https://www" value=""></ion-input>
+							<label>Test Internet</label>
+							<ion-input color="red" type="text" [(ngModel)]="test_internet_val" placeholder="Https://www" value=""></ion-input>
 						</td>
 						<td>
-							<ion-list radio-group [(ngModel)]="test_internet" >
+							<ion-list  radio-group [(ngModel)]="test_internet" >
 							<table  width="100%">
 							<tr >
 								<td width="50%" align="center">
@@ -94,11 +94,11 @@
 							</ion-list>
 						</td>
 					</tr>
-					<tr class="only_border_top only_border_bottom">
+					<tr *ngIf ="psb == '3' || psb == '7' ||  migrasi == '14' ||  migrasi == '16' ||  migrasi == '9' ||  migrasi == '21' ||  migrasi == '3' ||  migrasi == '2' ||  migrasi == '8' ||  migrasi == '6'" class="only_border_top only_border_bottom">
 						<!-- <td>&nbsp;Test UseTV</td>
 						<td>&nbsp;Chanel</td> -->
 						<td colspan="2">
-							<label>Test User TV</label>
+							<label>Test Usee TV</label>
 							<ion-input color="red" type="text" [(ngModel)]="test_use_tv_val" placeholder="Channel" value=""></ion-input>
 						</td>
 						<td><div>
@@ -179,46 +179,54 @@
 				</tr>
 			</table>
 	  	<ion-card>
-		  <ion-card-content>
-		    <ion-list radio-group>
+		  <ion-card-content >
+			<ion-item>
+					<ion-label>Catatan Khusus</ion-label>
+					<ion-checkbox color="dark"  [(ngModel)]="catatan_khusus_new"></ion-checkbox>
+			</ion-item>  
+						<ion-list hidden radio-group>
 
-			   <ion-list radio-group [(ngModel)]="catatan_khusus" (ionChange)="changeCatatanKhusus($event)">
-				<table  width="100%">
-				<tr>
-					<td width="10%" valign="top">
-			             <ion-radio value="1" checked></ion-radio>
-			         </td>
-			        <td valign="top">
-			        	Pelanggan belum / tidak memiliki TV set dan bersedia menitipkan STB ke Telkom
-			        </td>
-					
-				</tr>
-				<tr>
-					<td width="10%" valign="top">
-		                <ion-radio value="2" ></ion-radio>
-					</td>
-					<td>
-						Pelanggan belum / tidak menginginkan Usee TV dan bersedia menitipkan STB ke Telkom	
-					</td>
-				</tr>
-				<tr>
-					<td width="10%" valign="top">
-		                <ion-radio value="3" ></ion-radio>
-					</td>
-					<td>
-						<tr>
-							<td>lain-lain</td> 
-							<td>
+						<ion-list radio-group [(ngModel)]="catatan_khusus" (ionChange)="changeCatatanKhusus($event)">
+							<table  width="100%">
+							<tr>
+								<td width="10%" valign="top">
+									<ion-radio value="1" checked></ion-radio>
+								</td>
+								<td valign="top">
+									Pelanggan belum / tidak memiliki TV set dan bersedia menitipkan STB ke Telkom
+								</td>
 								
-									<ion-input  *ngIf="catatan_khusus == 3" type="text" [(ngModel)]="other" placeholder="Tulis sesuatu..."></ion-input>
-								
-							</td> 
-						</tr>  
-					</td>
-				</tr>
-				</table>
-				</ion-list>
-			</ion-list>
+							</tr>
+							<tr>
+								<td width="10%" valign="top">
+									<ion-radio value="2" ></ion-radio>
+								</td>
+								<td>
+									Pelanggan belum / tidak menginginkan Usee TV dan bersedia menitipkan STB ke Telkom	
+								</td>
+							</tr>
+							<tr>
+								<td width="10%" valign="top">
+									<ion-radio value="3" ></ion-radio>
+								</td>
+								<td>
+									<tr>
+										<td>lain-lain</td> 
+										<td>
+											
+												<ion-input  *ngIf="catatan_khusus == 3" type="text" [(ngModel)]="other" placeholder="Tulis sesuatu..."></ion-input>
+											
+										</td> 
+									</tr>  
+								</td>
+							</tr>
+							</table>
+							</ion-list>
+							
+						</ion-list>
+
+			<ion-input  type="text" *ngIf="catatan_khusus_new" [(ngModel)]="catatan_khusus_new_val" placeholder="Tulis sesuatu..."></ion-input>
+			
 		  </ion-card-content>
 		</ion-card>
 		<table width="100%">
