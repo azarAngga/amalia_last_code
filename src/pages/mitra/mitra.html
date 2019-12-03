@@ -1,8 +1,7 @@
 
 <ion-content>
-  <h3> < </h3>
  <ion-item>
-    <ion-label fixed>{{string_placeholder}}</ion-label>
+    <ion-label >{{string_placeholder}}</ion-label>
     <ion-input [(ngModel)]="search" placeholder="..." (keyup.enter)="searchAction()" type="text" value=""></ion-input>
 </ion-item>
 <button color="light" ion-button full (click)="searchAction()">Search</button>
@@ -18,8 +17,8 @@
 
 <ion-list *ngIf=" sto == 'no_wo'">
 
-  <ion-item  style="background-color:#000066;"  *ngFor="let item of items" (click)="dismiss_wo(search,item.no_telfon,item.nama,item.alamat)">		
-    <font color="white"><b style="text-transform: uppercase;">{{search}} / {{ item.nama }}</b></font>
+  <ion-item  style="background-color:#000066;"  *ngFor="let item of items" (click)="dismiss_wo(item.no_wo,item.no_telfon,item.nama,item.alamat,item.sto)">		
+    <font color="white"><b style="text-transform: uppercase;">{{item.nama}} / {{ item.alamat}}</b></font>
   
   </ion-item>
   

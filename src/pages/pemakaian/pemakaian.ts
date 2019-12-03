@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController,Platform } from 'ionic-angular';
+import { Component, HostListener } from '@angular/core';
+import { IonicPage, NavController, NavParams,ModalController,Platform, ViewController } from 'ionic-angular';
 import { MitraPage } from '../mitra/mitra';
 import { MapPage } from '../map/map';
 import * as $ from 'jquery';
@@ -105,6 +105,7 @@ export class PemakaianPage {
 	modeKeys: any[];
 	count_wo: any;
 	public nol: number = 0;
+	popup:any;
 	data_wo: Array<{id_barang: string,stok: string,satuan: string}>;
 	optionsList: Array<{ value: number, text: string, checked: boolean }> = [];
   
@@ -118,8 +119,10 @@ export class PemakaianPage {
 	   public http: Http,
 	   public loadingCtrl: LoadingController,
 	   private device: Device,
+	   public viewCtrl: ViewController,
 	   private storage: Storage
    ){
+   
 
    	  this.storage.set('session',"oke");
    	  this.tanggal_mulai 	 = new Date().toISOString();
@@ -129,7 +132,8 @@ export class PemakaianPage {
       this.end_date   = date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate();
       
 
-      this.platform.ready().then(() => {
+    this.platform.ready().then(() => {
+		this.platform.registerBackButtonAction(() => {}) 
 	  	this.storage.get('nik').then((val) => {
 	  	this.nik = val;
 	  	 console.log("ini niknya"+this.nik);
@@ -137,14 +141,24 @@ export class PemakaianPage {
 	  })  
   }
 
+
+  @HostListener('document:ionBackButton', ['$event'])
+  private async overrideHardwareBackAction($event: any) {
+	 
+	  await this.profileModal.dismiss();
+  }
+
+
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad PemakaianPage');
   }
 
+   profileModal: any;
    presentProfileModal(x) {
-
-   		let profileModal = this.modalCtrl.create(MitraPage, { sto:x,witel:this.witel,nik:this.nik });
-   		profileModal.onDidDismiss(data => {
+   		this.profileModal = this.modalCtrl.create(MitraPage, { sto:x,witel:this.witel,nik:this.nik });
+   		this.profileModal.onDidDismiss(data => {
 		     console.log("inii"+data.data);
 		     if(data.jenis == 'mitra'){
 		     	this.nama_mitra = data.data;
@@ -153,21 +167,28 @@ export class PemakaianPage {
 		     }else if(data.jenis == "sto"){
 		     	this.sto = data.data;
 		     }else if(data.jenis == "no_wo"){
-				 alert(data.data.no_wo)
 				this.no_wo = data.data.no_wo;
 				this.no_permintaan = data.data.no_wo;
-				this.no_inet = data.data.no_telepon
+				this.no_telepon = data.data.no_telfon
+				this.no_inet = data.data.no_inet
 				this.nama_pelanggan = data.data.nama
 				this.alamat_pelanggan = data.data.alamat;
+				this.sto = data.data.sto;
 
 				if(data.data.nama != ""){
 					this.disabled_nama = "ok"
+				}
+
+				if(data.data.no_inet != ""){
+					this.disabled = "ok"
 				}
 				
 			 }
 		     
 		});
-   		profileModal.present();
+		   this.profileModal.present();
+		   
+		   
  	}
 
  	changeStart(val: any){
@@ -199,37 +220,40 @@ export class PemakaianPage {
  		var satuan = [];
  		this.no_wo = this.no_permintaan;
 
- 		if(this.no_kontak == undefined){
- 			this.showAlert("No no kontak tidak boleh kosong");
- 		}else if(this.sto == undefined){
- 			this.showAlert("STO Tidak boleh kosong");
- 		}else if(this.no_permintaan == undefined){
- 			this.showAlert("No Permintaan Tidak boleh kosong");
- 		}else if(this.no_telepon == undefined){
- 			this.showAlert("No Telepon Tidak boleh kosong");
- 		}else if(this.no_inet == undefined){
- 			this.showAlert("No Inet Tidak boleh kosong");
- 		}else if(this.start_date == undefined){
- 			this.showAlert("Start Date Tidak boleh kosong");
- 		}else if(this.end_date == undefined){
- 			this.showAlert("End Date Tidak boleh kosong");
- 		}else if(this.nama_pelanggan == undefined){
- 			this.showAlert("Nama Pelanggan Tidak boleh kosong");
- 		}else if(this.alamat_pelanggan == undefined){
- 			this.showAlert("Nama alamat pelanggan Tidak boleh kosong");
- 		}else if(this.rt == undefined){
-			this.showAlert("RT Tidak boleh kosong");
-		}else if(this.rw == undefined){
-			this.showAlert("RW Tidak boleh kosong");
-		}else if(this.kelurahan == undefined){
-			this.showAlert("Kelurahan Tidak boleh kosong");
-		}else if(this.kecamatan == undefined){
-			this.showAlert("kecamatan Tidak boleh kosong");
-		}else if(this.dp == undefined){
-			this.showAlert("ODP Tidak boleh kosong");
-		}else if(this.bangunan == undefined){
-			this.showAlert("Info Bangunan Tidak boleh kosong");
-		}else{
+ 		// if(this.no_kontak == undefined){
+ 		// 	this.showAlert("No no kontak tidak boleh kosong");
+ 		// }else if(this.sto == undefined){
+ 		// 	this.showAlert("STO Tidak boleh kosong");
+ 		// }else if(this.no_permintaan == undefined){
+ 		// 	this.showAlert("No Permintaan Tidak boleh kosong");
+ 		// }else if(this.no_telepon == undefined){
+ 		// 	this.showAlert("No Telepon Tidak boleh kosong");
+ 		// }else if(this.no_inet == undefined){
+ 		// 	this.showAlert("No Inet Tidak boleh kosong");
+ 		// }else if(this.start_date == undefined){
+ 		// 	this.showAlert("Start Date Tidak boleh kosong");
+ 		// }else if(this.end_date == undefined){
+ 		// 	this.showAlert("End Date Tidak boleh kosong");
+ 		// }else if(this.nama_pelanggan == undefined){
+ 		// 	this.showAlert("Nama Pelanggan Tidak boleh kosong");
+ 		// }else if(this.alamat_pelanggan == undefined){
+ 		// 	this.showAlert("Nama alamat pelanggan Tidak boleh kosong");
+ 		// }else if(this.rt == undefined){
+		// 	this.showAlert("RT Tidak boleh kosong");
+		// }else if(this.rw == undefined){
+		// 	this.showAlert("RW Tidak boleh kosong");
+		// }else if(this.kelurahan == undefined){
+		// 	this.showAlert("Kelurahan Tidak boleh kosong");
+		// }else if(this.kecamatan == undefined){
+		// 	this.showAlert("kecamatan Tidak boleh kosong");
+		// }else if(this.dp == undefined){
+		// 	this.showAlert("ODP Tidak boleh kosong");
+		// }else if(this.bangunan == undefined){
+		// 	this.showAlert("Info Bangunan Tidak boleh kosong");
+		// }else if(this.lat_odp == undefined && this.lat_pel == undefined){
+		// 	this.showAlert("Info Bangunan Tidak boleh kosong");
+		// }else{
+			
 			var datas = {
 					'jumlah_tiang_telpn':this.jumlah_tiang_telpn,
 					'jumlah_klem_ring':this.jumlah_klem_ring,
@@ -281,7 +305,8 @@ export class PemakaianPage {
 					headers : headers
 				});
 		
-				let wo = 'nik='+this.nik+"&wo_number="+this.no_wo+"&versi="+this.uri.versi;
+				var json = JSON.stringify(datas)
+				let wo = 'nik='+this.nik+"&wo_number="+this.no_wo+"&versi="+this.uri.versi+"&data="+json;
 				console.log(this.uri.uri_api_alista+'ios/put_data_pemakaian_halaman1.php')
 				this.http.post(this.uri.uri_api_alista+'ios/put_data_pemakaian_halaman1.php',wo,requestOptions)
 					.map(res => res.json())
@@ -295,7 +320,7 @@ export class PemakaianPage {
 						}
 						this.loader.dismiss();
 					}); 
- 		}
+ 		// }
  	}
 
  	showAlert(x){
@@ -322,8 +347,8 @@ export class PemakaianPage {
 
 	presentOdpModal(x) {
 
-   		let profileModal = this.modalCtrl.create(MapPage, { data: x  });
-   		profileModal.onDidDismiss(data => {
+   		this.profileModal = this.modalCtrl.create(MapPage, { data: x  });
+   		this.profileModal.onDidDismiss(data => {
 		     
 		      if(data.data == 'ODP'){
 		      	this.lat_odp = data.latitude;
@@ -335,7 +360,7 @@ export class PemakaianPage {
 		      console.log("inii"+this.lat_odp+" "+data.data);
 		     
 		});
-   		profileModal.present();
+   		this.profileModal.present();
  	}
 
  	ionViewWillLeave() {

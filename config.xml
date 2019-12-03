@@ -3,7 +3,7 @@
     <name>Amalia</name>
     <description>app from telkom akses</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://10.204.100.243:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -105,4 +105,5 @@
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.1.4" />
     <allow-navigation href="http://10.204.100.224:8100" sessionid="2c0d71c9" />
+    <allow-navigation href="http://10.204.100.243:8100" sessionid="3111d56d" />
 </widget>

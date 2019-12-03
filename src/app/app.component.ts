@@ -50,8 +50,6 @@ export class MyApp {
         if(this.foto == null){
             this.foto = "";
         }
-
-        
         
       });
 
@@ -73,8 +71,8 @@ export class MyApp {
             ];
               console.log('tampil', val);
               //this.rootPage = FotoPage;
-              this.rootPage = Pemakaian3Page;
-              //this.rootPage = Pemakaian4Page;
+              // this.rootPage = FotoPage;
+              this.rootPage = MaterialPage;
           }else{
               console.log('login', val);
               //this.rootPage = FotoPage;

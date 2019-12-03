@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController,Platform } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/timeout';
 import { UriProvider  } from '../../providers/uri/uri';
 import { LoadingController } from 'ionic-angular';
 
@@ -28,8 +29,9 @@ export class MitraPage {
   witel: any;
   string_placeholder: any;
   json_data_vendor2: any;
-  constructor(public navCtrl: NavController,public uri: UriProvider,public loadingCtrl: LoadingController, public navParams: NavParams,public http: Http,public viewCtrl: ViewController) {
-      console.log('sto', navParams.get('sto'));
+  constructor(public navCtrl: NavController,public uri: UriProvider,public platform: Platform,public loadingCtrl: LoadingController, public navParams: NavParams,public http: Http,public viewCtrl: ViewController) {
+    this.platform.registerBackButtonAction(() => {}) 
+    console.log('sto', navParams.get('sto'));
       this.sto = navParams.get('sto');
       this.witel = navParams.get('witel'); 
       this.nik = navParams.get('nik'); 
@@ -40,7 +42,7 @@ export class MitraPage {
       }else if(this.sto == "mitra"){
         this.string_placeholder = "Mitra";
       }else if(this.sto == "no_wo"){
-        this.string_placeholder = "No Wo";
+        this.string_placeholder = "SC / Inet / Notel";
       }
 	
   }
@@ -52,7 +54,8 @@ export class MitraPage {
   loadData(){
     let url = ""
     if(this.sto == "no_wo"){
-      url = this.uri.uri_app_amalia+"/telkom_no_wo.php?no_wo="+this.search+"&nik="+this.nik;
+      //url = this.uri.uri_app_amalia+"/telkom_no_wo.php?no_wo="+this.search+"&nik="+this.nik;
+      url = "http://10.204.100.243/ibooster/telkom_no_wo.php?no_wo="+this.search+"&nik="+this.nik;
     }else{
        url = this.uri.uri_api+"master/get_data_all_master_mitra.php?nama="+this.search+"&jenis="+this.sto+"&witel="+this.witel;
     }
@@ -61,6 +64,7 @@ export class MitraPage {
       this.loading();
       this.http.get(url)
       .map(res => res.json())
+      .timeout(30000)
       .subscribe(data => {
         if(this.sto == "no_wo"){
           this.json_data_vendor2 = data.data;
@@ -73,7 +77,10 @@ export class MitraPage {
 
         this.loader.dismiss();
       	
-      });
+      },error => {
+				alert(error)
+				this.loader.dismiss();
+			});
   }
 
   initializeItems() {
@@ -110,13 +117,21 @@ export class MitraPage {
    this.viewCtrl.dismiss(data);
  }
 
- dismiss_wo(no_wo: any,no_telfon: any,nama: any,alamat: any){
-  let isi ={
-    no_wo: no_wo,
+ dismiss_wo(no_wo: any,no_telfon: any,nama: any,alamat: any,sto : any){
+  let no_inet = ""
+  if( (this.search).substring(0,1,1) == "1" && this.search.length == 12){
+    no_inet = this.search
+ }
+
+  let isi = {
+    no_wo: this.search,
     no_telfon: no_telfon,
     nama: nama,
-    alamat: alamat
+    alamat: alamat,
+    no_inet: no_inet,
+    sto:sto
   }
+
   let data = { 'data': isi,'jenis':this.sto };
   this.viewCtrl.dismiss(data);
  }

@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>material</ion-title>
+    <ion-title>Material</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -31,8 +31,19 @@
        </ion-card>
      <br/>
    <div *ngIf="no_material == false">
+
+      
+    <div>
+        <hr/>
+        <div align="center">
+            <b>Material Alista</b>
+        </div>
+        <hr/>
+    </div>
+    
+
      <ion-item-group *ngFor="let row of data_wo; let i =index">
-       <ion-item-divider color="light" text-wrap> ID Barang &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  <b>{{row.id_barang}}</b>  </ion-item-divider>
+       <ion-item-divider color="light" text-wrap> ID Barang &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  {{row.id_barang}}  </ion-item-divider>
        <ion-item>Stock Barang  &nbsp;&nbsp;&nbsp;&nbsp;: {{row.stok}}</ion-item>
        <ion-item>Satuan Barang &nbsp;&nbsp;: {{row.satuan}}</ion-item>
        <ion-item>
@@ -40,8 +51,30 @@
            <ion-input value="{{nol.value}}" [(ngModel)]="modeKeys[i]" type="text" placeholder="..."  ></ion-input>
        </ion-item>
      </ion-item-group>
+     
+     <br/>
+     <div>
+        <hr/>
+        <div align="center">
+            <b>Material Tambahan</b>
+        </div>
+        <hr/>
+    </div>
+
+    <table>
+      <tr>
+
+        <td>Material &nbsp;</td>
+        <td> <img src="add.png" height="30" id="tambah" (click)="newElement()" /> </td>
+        <td> <img (click)="removeElememt()" style="margin-top: 10" src="minus.png" height="30"  /> 
+        </td>
+      </tr>
+    </table>
+
+    <div id="parent"></div>
+    <br/>
    </div>
-   
+   <!--  -->
     <br/>
     <div>
 

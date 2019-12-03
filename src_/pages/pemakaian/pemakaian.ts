@@ -33,7 +33,9 @@ export class PemakaianPage {
 	sto: any ;
 	witel: any ;
 	no_permintaan: any ;
-	no_telepon: any ;	
+	no_telepon: any ;
+	disabled: any ="nok";
+	// no_telepon_val: any ;	
 	no_inet: any ;
 	nama_pelanggan: any ;
 	menu: any  = "order";

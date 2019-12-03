@@ -58,29 +58,28 @@
     
   </ion-item>
 
-  <ion-item hidden>
+  <ion-item  style="display: none;">
     <ion-label stacked><font color="black">No WO</font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_wo" style="color:grey"  ></ion-input>
   </ion-item>
 
   <br/>
-   <ion-item>
+   <ion-item style="display: none;">
     <ion-label stacked><font color="black">Witel</font></ion-label>
     <ion-input (click)="presentProfileModal('witel')"  disabled  placeholder="Tulis sesuatu" [(ngModel)]="witel" style="color:grey"></ion-input>
   </ion-item>
 
   <br/>
 
-  <ion-item>
+  <ion-item style="display: none;">
     <ion-label stacked><font color="black">STO</font></ion-label>
     <ion-input (click)="presentProfileModal('sto')"  disabled  placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
   </ion-item>
 
-    <ion-label stacked><font color="black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Permintaan</font></ion-label>
+    <ion-label stacked><font color="black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Inet / No SC / Notel</font></ion-label>
 
    <ion-item>
-    <ion-label fixed>SC -</ion-label>
-    <ion-input [(ngModel)]="no_permintaan" type="number"  value="" disabled  (click)="presentProfileModal('no_wo')" placeholder="Tulis sesuatu"></ion-input>
+    <ion-input [(ngModel)]="no_permintaan" value="" disabled  (click)="presentProfileModal('no_wo')" placeholder="Tulis sesuatu"></ion-input>
   </ion-item>
 
   <br/>
@@ -121,20 +120,27 @@
     <ion-label stacked><font color="black">No Kontak Pelanggan 2</font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_kontak_2"  type="number" max="13" style="color:grey"></ion-input>
   </ion-item>
+
+
   <ion-item>
     <ion-label stacked><font color="black">No Telepon Layanan</font></ion-label>
-    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_telepon"  type="number" style="color:grey"></ion-input>
+    <ion-input  placeholder="Tulis sesuatu" [(ngModel)]="no_telepon"  type="number" style="color:grey"></ion-input>
   </ion-item>
 
+  <!-- <ion-item *ngIf="no_telepon_val == ''">
+      <ion-label stacked><font color="black">No Telepon Layanan</font></ion-label>
+      <ion-input  placeholder="Tulis sesuatu" [(ngModel)]="no_telepon"  type="number" style="color:grey"></ion-input>
+    </ion-item> -->
 
-   <ion-item *ngIf="disabled !='ok'">
+
+   <ion-item *ngIf="disabled !='ok'" >
     <ion-label stacked><font color="black">No Inet </font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_inet"  type="number" style="color:grey"></ion-input>
   </ion-item>
 
-  <ion-item *ngIf="disabled =='ok'">
+  <ion-item *ngIf="disabled =='ok'" >
     <ion-label stacked><font color="black">No Inet </font></ion-label>
-    <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_inet"  type="number" style="color:grey"></ion-input>
+    <ion-input placeholder="Tulis sesuatu" disabled [(ngModel)]="no_inet"  type="number" style="color:grey"></ion-input>
   </ion-item>
 
   <ion-item>

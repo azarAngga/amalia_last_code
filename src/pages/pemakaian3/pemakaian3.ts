@@ -1,5 +1,5 @@
 import { Component,ViewChild,Renderer2 } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Pemakaian4Page} from'../pemakaian4/pemakaian4';
 import {  MaterialPage } from'../material/material';
@@ -42,6 +42,13 @@ export class Pemakaian3Page {
   tambahan_before: any= 0;
   speed_before: any= 0;
 
+  //tambahan
+  change_stb: any;
+  plc: any;
+  indibox: any;
+  stb_tambahan: any;
+  wifi_extender:any;
+
   speed_other: any;
  	nama: any;
  	notel_teknisi: any;
@@ -60,6 +67,7 @@ export class Pemakaian3Page {
    private storage: Storage,
    public http: Http,
    public uri: UriProvider,
+   public loadingCtrl: LoadingController,
    private barcodeScanner: BarcodeScanner,
    public alertCtrl: AlertController,
    private renderer: Renderer2) {
@@ -126,13 +134,15 @@ export class Pemakaian3Page {
     console.log('ionViewDidLoad Pemakaian3Page');
   }
 
-
   psbClick(val: any){
       if(val == this.psb_before){
         this.psb_before = 0;
         this.psb = 0;
       }else{
         this.psb_before = val;
+
+        this.migrasi_before = 0;
+        this.migrasi = 0;
       }
   }
   
@@ -140,8 +150,13 @@ export class Pemakaian3Page {
       if(val == this.migrasi_before){
         this.migrasi_before = 0;
         this.migrasi = 0;
+        
       }else{
         this.migrasi_before = val;
+
+        this.psb_before = 0;
+        this.psb = 0;
+
       }
   }
 
@@ -183,18 +198,16 @@ export class Pemakaian3Page {
 
   checkPaket(data_var){
     var data_2 = JSON.stringify(data_var);
-
+    this.loading()
     console.log(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_2);
     this.http.get(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_2)
       .map(res => res.json())
       .subscribe(data => {
-
+        this.loader.dismiss();
         if(data.status == "ok"){
           this.storage.set('data2',data_var);
           this.navCtrl.push(MaterialPage);
         }else{
-          //this.psb = "0";
-          //this.migrasi = "0";
           alert(data.message);
         }
 
@@ -230,10 +243,14 @@ export class Pemakaian3Page {
             tambahan: this.tambahan,
             speed:this.speed,
             other_speed:this.speed_other,
-            stb:stb
+            stb:stb,
+            change_stb: this.change_stb,
+            stb_tambahan: this.stb_tambahan,
+            plc: this.plc,
+            wifi_extender: this.wifi_extender,
+            indibox:this.indibox
           }
           this.checkPaket(data2);
-           
   }
 
   no_row: any = 0;
@@ -247,7 +264,7 @@ export class Pemakaian3Page {
     var str_app = "";
 
     if(no <= 3){
-      $('#parent').append('<div id="el'+no+'"><table><tr><td><button id="btn_'+no+'" class="button"><div><img src="scan_barcode.png"/></div></button></td><td> <input placeholder="tulis disini" id="txt_'+no+'" type="text"/></td></tr></table><br/></div>');
+      $('#parent').append('<div id="el'+no+'"><table><tr><td><button id="btn_'+no+'" class="button"><div><img src="scan_barcode.png"/></div></button></td><td> <input style="margin-left:5px;height:50px" placeholder="tulis disini" id="txt_'+no+'" type="text"/></td></tr></table><br/></div>');
       
       $("#btn_"+no).click(function() {
             $("#atribut").val(no);
@@ -281,27 +298,14 @@ export class Pemakaian3Page {
   	}
   }
 
-  // ngAfterViewInit(){
-  //   //this.newElement()
-  //   this.no_row = this.no_row+1;
-  //   var no = this.no_row;
-  //   var data = this.arr_material;
-  //   var no_ = 0;
-  //   var str_app = "";
-
-  //   if(no <= 3){
-  //     $('#parent').append('<div id="el'+no+'"><table><tr><td><button id="btn_'+no+'" class="button"><div><img src="scan_barcode.png"/></div></button></td><td> <input placeholder="tulis disini" id="txt_'+no+'" type="text"/></td></tr></table><br/></div>');
-      
-  //     $("#btn_"+no).click(function() {
-  //           $("#atribut").val(no);
-  //           $("#k").click();
-  //         });
-  //  }else{
-  //   alert("Maksimal STB hanya 3 saja");
-  //   this.no_row = 3;
-  //  }
-
-  // }
+  loader: any;
+  loading(){
+    this.loader = this.loadingCtrl.create({
+      content: "please Wait.."
+    })
+    // execute loading 
+    this.loader.present();
+  }
 
   showAlert(x){
     let alert = this.alertCtrl.create({

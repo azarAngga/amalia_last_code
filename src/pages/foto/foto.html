@@ -10,7 +10,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
 	<table width="100%">
 		<tr>
@@ -357,82 +357,133 @@
 				</td>
 		</tr>
 
-		<!-- 5 -->
-		<tr>
+		<!-- 5 with stb -->
+		<tr *ngIf="psb == '3' || psb == '7' || migrasi == '8' || migrasi == '6' || migrasi == '14' || migrasi == '16' || migrasi == '9' || migrasi == '21' || migrasi == '3' || migrasi == '2'  ">
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		<tr *ngIf="psb == '3' || psb == '7' || migrasi == '8' || migrasi == '6' || migrasi == '14' || migrasi == '16' || migrasi == '9' || migrasi == '21' || migrasi == '3' || migrasi == '2'  ">
 				<td  align="center">
 					STB
 				</td>
 				<td  align="center">
 					Foto Dengan Pelanggan
 				</td>
-			</tr>
-			<tr>
-				<td colspan="2">&nbsp;</td>
-			</tr>
-			<tr>
-				<td  align="center">
-	
+		</tr>
+		<tr *ngIf="psb == '3' || psb == '7' || migrasi == '8' || migrasi == '6' || migrasi == '14' || migrasi == '16' || migrasi == '9' || migrasi == '21' || migrasi == '3' || migrasi == '2'  ">
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr *ngIf="psb == '3' || psb == '7' || migrasi == '8' || migrasi == '6' || migrasi == '14' || migrasi == '16' || migrasi == '9' || migrasi == '21' || migrasi == '3' || migrasi == '2'  ">
+			<td  align="center">
+
+				<ion-card>
+					<ion-card-content>
+						&nbsp;
+					<img *ngIf="img9 == 'icon_camera.png'" (click)="foto('9')" [src]="img9" style="width: 100px;height: 100px" /> 
+					<img *ngIf="img9 != 'icon_camera.png' && pilihan == '2'" (click)="foto('9')" [src]="img9" style="width: 100px;height: 100px;transform: rotate(90deg);" /> 
+
+					<img *ngIf="img9 != 'icon_camera.png' && pilihan == '1'" (click)="foto('9')" [src]="img9" style="width: 100px;height: 100px" /> 
+					&nbsp;
+
+					<table *ngIf="isian == 'ok'">
+						<tr>
+							<td>Lat</td>
+							<td>:</td>
+							<td>{{lat_9}}</td>
+						</tr>
+						<tr>
+							<td>Long</td>
+							<td>:</td>
+							<td>{{long_9}}</td>
+						</tr>
+						<tr>
+							<td>Date</td>
+							<td>:</td>
+							<td>{{date_9}}</td>
+						</tr>
+					</table>
+					</ion-card-content>
+				</ion-card>
+			</td>
+			<td  align="center">
+
 					<ion-card>
-					  <ion-card-content>
-						  &nbsp;
-						<img *ngIf="img9 == 'icon_camera.png'" (click)="foto('9')" [src]="img9" style="width: 100px;height: 100px" /> 
-						<img *ngIf="img9 != 'icon_camera.png' && pilihan == '2'" (click)="foto('9')" [src]="img9" style="width: 100px;height: 100px;transform: rotate(90deg);" /> 
+						<ion-card-content>
+							&nbsp;
+						<img *ngIf="img10 == 'icon_camera.png'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px" /> 
+						<img *ngIf="img10 != 'icon_camera.png' && pilihan == '2'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px;transform: rotate(90deg);" /> 
 	
-						<img *ngIf="img9 != 'icon_camera.png' && pilihan == '1'" (click)="foto('9')" [src]="img9" style="width: 100px;height: 100px" /> 
+						<img *ngIf="img10 != 'icon_camera.png' && pilihan == '1'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px" /> 
 						&nbsp;
 	
 						<table *ngIf="isian == 'ok'">
 							<tr>
 								<td>Lat</td>
 								<td>:</td>
-								<td>{{lat_9}}</td>
+								<td>{{lat_10}}</td>
 							</tr>
 							<tr>
 								<td>Long</td>
 								<td>:</td>
-								<td>{{long_9}}</td>
+								<td>{{long_10}}</td>
 							</tr>
 							<tr>
 								<td>Date</td>
 								<td>:</td>
-								<td>{{date_9}}</td>
+								<td>{{date_10}}</td>
 							</tr>
 						</table>
-					  </ion-card-content>
+						</ion-card-content>
 					</ion-card>
 				</td>
-				<td  align="center">
-	
-						<ion-card>
-						  <ion-card-content>
-							  &nbsp;
-							<img *ngIf="img10 == 'icon_camera.png'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px" /> 
-							<img *ngIf="img10 != 'icon_camera.png' && pilihan == '2'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px;transform: rotate(90deg);" /> 
-		
-							<img *ngIf="img10 != 'icon_camera.png' && pilihan == '1'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px" /> 
-							&nbsp;
-		
-							<table *ngIf="isian == 'ok'">
-								<tr>
-									<td>Lat</td>
-									<td>:</td>
-									<td>{{lat_10}}</td>
-								</tr>
-								<tr>
-									<td>Long</td>
-									<td>:</td>
-									<td>{{long_10}}</td>
-								</tr>
-								<tr>
-									<td>Date</td>
-									<td>:</td>
-									<td>{{date_10}}</td>
-								</tr>
-							</table>
-						  </ion-card-content>
-						</ion-card>
-					</td>
+		</tr>
+
+		<!-- 5 no stb -->
+		<tr *ngIf="(psb != '3' && psb != '7' ) && (migrasi != '8' && migrasi != '6' && migrasi != '14' && migrasi != '16' && migrasi != '9' && migrasi != '21' && migrasi != '3' && migrasi != '2')  ">
+				<td colspan="2">&nbsp;</td>
 			</tr>
+		<tr *ngIf="(psb != '3' && psb != '7' ) && (migrasi != '8' && migrasi != '6' && migrasi != '14' && migrasi != '16' && migrasi != '9' && migrasi != '21' && migrasi != '3' && migrasi != '2')  ">
+				<td  align="center" colspan="2">
+					Foto Dengan Pelanggan
+				</td>
+				
+		</tr>
+		<tr *ngIf="(psb != '3' && psb != '7' ) && (migrasi != '8' && migrasi != '6' && migrasi != '14' && migrasi != '16' && migrasi != '9' && migrasi != '21' && migrasi != '3' && migrasi != '2')  ">
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr *ngIf="(psb != '3' && psb != '7' ) && (migrasi != '8' && migrasi != '6' && migrasi != '14' && migrasi != '16' && migrasi != '9' && migrasi != '21' && migrasi != '3' && migrasi != '2')  ">
+			
+			<td  align="center" colspan="2"> 
+
+					<ion-card>
+						<ion-card-content>
+							&nbsp;
+						<img *ngIf="img10 == 'icon_camera.png'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px" /> 
+						<img *ngIf="img10 != 'icon_camera.png' && pilihan == '2'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px;transform: rotate(90deg);" /> 
+	
+						<img *ngIf="img10 != 'icon_camera.png' && pilihan == '1'" (click)="foto('10')" [src]="img10" style="width: 100px;height: 100px" /> 
+						&nbsp;
+	
+						<table *ngIf="isian == 'ok'">
+							<tr>
+								<td>Lat</td>
+								<td>:</td>
+								<td>{{lat_10}}</td>
+							</tr>
+							<tr>
+								<td>Long</td>
+								<td>:</td>
+								<td>{{long_10}}</td>
+							</tr>
+							<tr>
+								<td>Date</td>
+								<td>:</td>
+								<td>{{date_10}}</td>
+							</tr>
+						</table>
+						</ion-card-content>
+					</ion-card>
+				</td>
+		</tr>
 
 
 	</table>

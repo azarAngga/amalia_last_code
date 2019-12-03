@@ -6,6 +6,8 @@ import { UriProvider } from "../../providers/uri/uri";
 import { Http,RequestOptions,Headers } from "@angular/http";
 import { LoadingController } from 'ionic-angular';
 import { Pemakaian2Page } from '../pemakaian2/pemakaian2';
+import * as $ from 'jquery';
+import { parse } from 'querystring';
 
 /**
  * Generated class for the MaterialPage page.
@@ -56,7 +58,8 @@ export class MaterialPage {
          console.log("ini niknya"+this.nik);
          this.loadMaterial(this.nik);
         });
-      })      
+      })   
+      this.materialTambahan();   
   }
 
   loadMaterial(nik :any){
@@ -72,6 +75,24 @@ export class MaterialPage {
 		this.onLoad(nik);
 	}
 
+  arr_designator_tambahan : any = []
+  arr_satuan_tambahan : any =[]
+
+  select_designator : any = ""
+
+  materialTambahan(){
+    this.http.get(this.uri.uri_api_alista+'/amalia_app/get_material_tambahan.php')
+	  	.map(res => res.json())
+	  	.subscribe(data => {
+        let count = data.length
+        
+        for(let no = 0;no < count;no++){
+          this.arr_designator_tambahan.push(data[no]['designator'])
+          this.arr_satuan_tambahan.push(data[no]['satuan'])
+          this.select_designator += "<option value='"+data[no]['designator']+"'>"+data[no]['designator']+"</option>"
+        }
+      }); 
+  }
 
   onLoad(nik : any){
 		this.modeKeys = [];
@@ -121,7 +142,7 @@ export class MaterialPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MaterialPage');
+    
   }
 
   actionNext(){
@@ -138,6 +159,8 @@ export class MaterialPage {
             let satuan_m2 = []; 	 
             let volume_m2 = [];	
             let wo_number_m2 = []; 
+            let material_tambahan_designator = []
+            let material_tambahan_volume = []
 
             try{
               for(var idx = 0;idx < this.data_wo.length ; idx++){
@@ -150,16 +173,30 @@ export class MaterialPage {
               stok_m2.push(this.data_wo[idx].stok); 
               satuan_m2.push(this.data_wo[idx].satuan); 
               volume_m2.push(this.modeKeys[idx]);
-            }
+
+              
+             }
             }catch(error){
               
             }
 
+            
+            try{
+              for(var idx = 1;idx <= this.no_row ; idx++){
+                material_tambahan_designator.push($('#designator_'+idx).val())
+                material_tambahan_volume.push($('#volume_tambahan_'+idx).val())
+              }
+            }catch(error){
+
+            }
+            
             var data_new = {
               'id_barang':id_barang_m2,
               'stok':stok_m2,
               'satuan':satuan_m2,
-              'volume':volume_m2
+              'volume':volume_m2,
+              'material_tambahan_designator': material_tambahan_designator,
+              'material_tambahan_volume': material_tambahan_volume
             }
 
       this.storage.get('data2').then(val =>{
@@ -179,6 +216,85 @@ export class MaterialPage {
         });
       })
   }
+
+  no_row: any = 0
+
+  newElement(){
+    this.no_row = this.no_row+1;
+    var no = this.no_row;
+    var no_ = 0;
+    var str_app = "";
+
+      $('#parent').append(
+      '<html>'+
+          '<head>'+
+          '<style>'+
+          '#customers {'+
+            'font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;'+
+            'border-collapse: collapse;'+
+            ' width: 100%;'+
+            ' }'+
+
+            '#customers td, #customers th {'+
+              'border: 1px solid #ddd;'+
+              'padding: 8px;'+
+              ' }'+
+
+              '#customers tr:nth-child(even){}'+
+
+              '#customers tr:hover {}'+
+
+              ' #customers th {'+
+                ' padding-top: 12px;'+
+                'padding-bottom: 12px;'+
+                'text-align: left;'+
+                'background-color: #f2f2f2;'+
+                ' }'+
+                '</style>'+
+                '</head>'+
+                '<body >'+
+                '<div id= "el_'+no+'">'+
+                '<table id="customers">'+
+                '<tr>'+
+                '<th>Designator : <select class="designator"  id="designator_'+no+'">'+this.select_designator+'</select></th>'+
+                '</tr>'+
+
+                '<tr>'+
+                '<td><div  style="float:left"> Satuan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp; </div><div style="float:left" id="satuan_'+no+'">'+this.arr_satuan_tambahan[0]+'</div> </td>'+
+                '</tr>'+
+
+                '<tr>'+
+                '<td>Volume &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="number" value="0" id="volume_tambahan_'+no+'"/></td>'+
+                '</tr>'+
+            
+                '</table>'+
+                '<div>'+
+                ' </body>'+
+                '</html>'
+
+    );
+      
+
+      var arr = this.arr_satuan_tambahan;
+    
+      $('#designator_'+no).change(function(){
+          var numb = $( "#designator_"+no ).val();
+          $('#satuan_'+no).text(arr[numb[0]])
+          
+      })
+  }
+
+
+  removeElememt(){
+    var no = this.no_row;
+    $('#el_'+no).remove();
+    this.no_row = this.no_row-1;
+    if(this.no_row < 0){
+      this.no_row = 0;
+    }
+  }
+
+
 }
 
 

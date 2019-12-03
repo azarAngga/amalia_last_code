@@ -97,6 +97,9 @@ data2: any;
 data3: any;
 data4: any;
 
+psb:any;
+migrasi:any;
+
 // nik: any;
 
  latitude: any;
@@ -104,6 +107,9 @@ data4: any;
  date_new: any;
 
   uri_api_alista: any;
+  uploading: string;
+  gagal_upload: string;
+  timeout: string;
 
   constructor(public navCtrl: NavController,
    private fileChooser: FileChooser,
@@ -156,11 +162,16 @@ data4: any;
 	            this.data4 = val;
 	          });
 			
-	        this.nama_foto = year+""+month+""+day+""+hours+""+minutes+""+seconds+""+millisecond+""+this.nik;
+	        this.nama_foto = year+""+month+""+day+""+hours+""+minutes+""+seconds+""+millisecond+"_"+this.nik;
 
 	        this.koordinat();
 
 			 
+        })
+
+        this.storage.get("data2").then((val)=>{
+          this.psb = val.psb
+          this.migrasi = val.migrasi
         })
     })
   }
@@ -210,23 +221,6 @@ data4: any;
     	 	
     	 	this.upload(filename,imageData,res,index_foto)
 
-    // 	 	if(index_foto == "1"){
-    // 	 		this.img1 = res
-		 	// }else if(index_foto == "2"){
-    // 	 		this.img2 = res
-		 	// }else if(index_foto == "3"){
-    // 	 		this.img3 = res
-		 	// }else if(index_foto == "4"){
-    // 	 		this.img4 = res
-		 	// }else if(index_foto == "5"){
-    // 	 		this.img5 = res
-		 	// }else if(index_foto == "6"){
-    // 	 		this.img6 = res
-		 	// }else if(index_foto == "7"){
-    // 	 		this.img7 = res
-		 	// }
-
-		 	// this.sendPostRequest(path,filename)
     	 	
     	 });
 
@@ -306,80 +300,101 @@ data4: any;
     }
 
     upload(nama,path,res,index_foto){
+
+      this.uploading = "nok"
+      this.timeout = "nok"
       var options = {
         fileKey: "file",
-        fileName: nama,
+        fileName: this.nik+"_"+nama,
         chunkedMode: false,
         mimeType: "multipart/form-data",
-        params : {'fileName': nama}
+        params : {'fileName': nama+"_"+this.nik}
       };
+
+      setTimeout(() => {
+        
+          if(this.uploading == "nok"){
+            this.timeout = "ok"
+            alert("upload gagal coba untuk upload ulang")
+            this.loader.dismiss();
+          }
+
+      }, 20000);
      
-      var url = "http://180.250.124.181/API/amalia/uploads.php";
+      var url = "https://alista.telkomakses.co.id/amalia/upload_foto.php";
       const fileTransfer: FileTransferObject = this.transfer.create();
       //Use the FileTransfer to upload the image
       fileTransfer.upload(path, url, options).then(data => {
-      		this.loader.dismiss();
-      		if(index_foto == "1"){
-				this.img1 = res
-				this.date_1 = this.getDate()
-				this.lat_1 = this.latitude
-				this.long_1 = this.longitude
-				this.name_1 = nama
-		 	}else if(index_foto == "2"){
-    	 		this.img2 = res
-				this.date_2 = this.getDate()
-				this.lat_2 = this.latitude
-				this.long_2 = this.longitude
-				this.name_2 = nama
-		 	}else if(index_foto == "3"){
-    	 		this.img3 = res
-				this.date_3 = this.getDate()
-				this.lat_3 = this.latitude
-				this.long_3 = this.longitude
-				this.name_3 = nama
-		 	}else if(index_foto == "4"){
-    	 		this.img4 = res
-				this.date_4 = this.getDate()
-				this.lat_4 = this.latitude
-				this.long_4 = this.longitude
-				this.name_4 = nama
-		 	}else if(index_foto == "5"){
-    	 		this.img5 = res
-				this.date_5 = this.getDate()
-				this.lat_5 = this.latitude
-				this.long_5 = this.longitude
-				this.name_5 = nama
-		 	}else if(index_foto == "6"){
-    	 		this.img6 = res
-				this.date_6 = this.getDate()
-				this.lat_6 = this.latitude
-				this.long_6 = this.longitude
-				this.name_6 = nama
-		 	}else if(index_foto == "7"){
-    	 		this.img7 = res
-				this.date_7 = this.getDate()
-				this.lat_7 = this.latitude
-				this.long_7 = this.longitude
-				this.name_7 = nama
-		 	}else if(index_foto == "8"){
-        this.img8 = res
-     this.date_8 = this.getDate()
-     this.lat_8 = this.latitude
-     this.long_8 = this.longitude
-     this.name_8 = nama
-    }else if(index_foto == "9"){
-      this.img9 = res
-      this.date_9 = this.getDate()
-      this.lat_9 = this.latitude
-      this.long_9 = this.longitude
-      this.name_9 = nama
-      }else if(index_foto == "10"){
-        this.img10 = res
-        this.date_10 = this.getDate()
-        this.lat_10 = this.latitude
-        this.long_10 = this.longitude
-        this.name_10 = nama
-}
+        
+        if(this.timeout == "nok"){
+          this.uploading = "ok"
+          if(index_foto == "1"){
+            this.img1 = res
+            this.date_1 = this.getDate()
+            this.lat_1 = this.latitude
+            this.long_1 = this.longitude
+            this.name_1 = this.nik+"_"+nama
+           }else if(index_foto == "2"){
+               this.img2 = res
+            this.date_2 = this.getDate()
+            this.lat_2 = this.latitude
+            this.long_2 = this.longitude
+            this.name_2 = this.nik+"_"+nama
+           }else if(index_foto == "3"){
+               this.img3 = res
+            this.date_3 = this.getDate()
+            this.lat_3 = this.latitude
+            this.long_3 = this.longitude
+            this.name_3 = this.nik+"_"+nama
+           }else if(index_foto == "4"){
+               this.img4 = res
+            this.date_4 = this.getDate()
+            this.lat_4 = this.latitude
+            this.long_4 = this.longitude
+            this.name_4 = this.nik+"_"+nama
+           }else if(index_foto == "5"){
+               this.img5 = res
+            this.date_5 = this.getDate()
+            this.lat_5 = this.latitude
+            this.long_5 = this.longitude
+            this.name_5 = this.nik+"_"+nama
+           }else if(index_foto == "6"){
+               this.img6 = res
+            this.date_6 = this.getDate()
+            this.lat_6 = this.latitude
+            this.long_6 = this.longitude
+            this.name_6 = this.nik+"_"+nama
+           }else if(index_foto == "7"){
+               this.img7 = res
+            this.date_7 = this.getDate()
+            this.lat_7 = this.latitude
+            this.long_7 = this.longitude
+            this.name_7 = this.nik+"_"+nama
+           }else if(index_foto == "8"){
+            this.img8 = res
+         this.date_8 = this.getDate()
+         this.lat_8 = this.latitude
+         this.long_8 = this.longitude
+         this.name_8 = this.nik+"_"+nama
+          }else if(index_foto == "9"){
+          this.img9 = res
+          this.date_9 = this.getDate()
+          this.lat_9 = this.latitude
+          this.long_9 = this.longitude
+          this.name_9 = this.nik+"_"+nama
+          }else if(index_foto == "10"){
+            this.img10 = res
+            this.date_10 = this.getDate()
+            this.lat_10 = this.latitude
+            this.long_10 = this.longitude
+            this.name_10 = this.nik+"_"+nama
+          }
+
+          this.loader.dismiss(); 
+
+        }
+           
+      
       }, err => {});
 
     }
@@ -419,6 +434,13 @@ data4: any;
 
   showConfirm() {
 
+    if(this.psb == '3' || this.psb == '7' || this.migrasi == '8' || this.migrasi == '6' || this.migrasi == '14' || this.migrasi == '16' || this.migrasi == '9' || this.migrasi == '21' || this.migrasi == '3' || this.migrasi == '2' ){
+      if(this.img9 == 'icon_camera.png'){
+        alert("Foto Depan ODP tidak boleh kosong")
+        return true
+      }
+    }
+
   	if(this.img1 == 'icon_camera.png'){
   		alert("Foto Depan ODP tidak boleh kosong")
   	}else if(this.img2 == 'icon_camera.png'){
@@ -435,31 +457,10 @@ data4: any;
 		alert("Foto jalur IKR tidak boleh kosong")
   	}else if(this.img8 == 'icon_camera.png'){
       alert("Foto ONT tidak boleh kosong")
-    }else if(this.img9 == 'icon_camera.png'){
-      alert("Foto STB tidak boleh kosong")
     }else if(this.img10 == 'icon_camera.png'){
        alert("Foto dengan pelanggan tidak boleh kosong")
     } else{
 
-  		// let confirm = this.alertCtrl.create({
-      // title: 'Sertakan email pelanggan ',
-      // inputs: [
-      //   {
-      //     name: 'email',
-      //     placeholder: 'masukan email pelanggan (Wajib)'
-      //   }
-      // ],
-      // buttons: [
-      //   {
-      //     text: 'Cancel',
-      //     handler: () => {
-      //     }
-      //   },
-      //   {
-      //     text: 'OK',
-      //     handler: (data) => {
-          //confirm.dismiss();
-          // this.loading();
           var data5 = {
 
             name_1:this.name_1,

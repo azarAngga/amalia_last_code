@@ -5,6 +5,9 @@ import { FotoPage } from '../foto/foto';
 import { AlertController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import {  UriProvider } from "../../providers/uri/uri";
+import 'rxjs/add/operator/timeout';
+import { error } from 'util';
+
 /**
  * Generated class for the Pemakaian2Page page.
  *
@@ -111,7 +114,9 @@ export class Pemakaian2Page {
 			console.log(this.uri.uri_api_alista+"amalia_app/check_test_layanan.php?layanan="+data1+"&test_layanan="+data2)
 			this.http.get(this.uri.uri_api_alista+"amalia_app/check_test_layanan.php?layanan="+data1+"&test_layanan="+data2)
 			.map(res => res.json())
-			.subscribe(data => {
+			.timeout(30000)
+			.subscribe(
+				data => {
 				this.loader.dismiss();
 				if(data.status == "ok"){
 					this.navCtrl.push(FotoPage);
@@ -120,8 +125,12 @@ export class Pemakaian2Page {
 				//this.migrasi = "0";
 				alert(data.message);
 				}
-
-			});
+			},error => {
+				alert(error)
+				this.loader.dismiss();
+			}
+			
+			);
 
 
 		// }
