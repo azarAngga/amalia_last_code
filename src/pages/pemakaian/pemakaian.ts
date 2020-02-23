@@ -29,6 +29,8 @@ export class PemakaianPage {
 	
 	end_date: any ;
 	no_wo: any ="00";
+	wo_num: any;
+	crew:any;
 	sto: any ;
 	witel: any ;
 	no_permintaan: any ;
@@ -46,6 +48,8 @@ export class PemakaianPage {
 	lng_odp: any = "-";
 	lat_pel: any = "-";
 	lng_pel: any = "-";
+
+	nik_teknisi_2: any
 
 	nik: any;
 	no_kontak: any;
@@ -135,7 +139,7 @@ export class PemakaianPage {
     this.platform.ready().then(() => {
 		this.platform.registerBackButtonAction(() => {}) 
 	  	this.storage.get('nik').then((val) => {
-	  	this.nik = val;
+	  	// this.nik = "16850353";
 	  	 console.log("ini niknya"+this.nik);
 	  	});
 	  })  
@@ -144,12 +148,8 @@ export class PemakaianPage {
 
   @HostListener('document:ionBackButton', ['$event'])
   private async overrideHardwareBackAction($event: any) {
-	 
 	  await this.profileModal.dismiss();
   }
-
-
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PemakaianPage');
@@ -159,32 +159,37 @@ export class PemakaianPage {
    presentProfileModal(x) {
    		this.profileModal = this.modalCtrl.create(MitraPage, { sto:x,witel:this.witel,nik:this.nik });
    		this.profileModal.onDidDismiss(data => {
-		     console.log("inii"+data.data);
-		     if(data.jenis == 'mitra'){
-		     	this.nama_mitra = data.data;
-		     }else if(data.jenis == 'witel'){
-				this.witel = data.data;
-		     }else if(data.jenis == "sto"){
-		     	this.sto = data.data;
-		     }else if(data.jenis == "no_wo"){
-				this.no_wo = data.data.no_wo;
-				this.no_permintaan = data.data.no_wo;
-				this.no_telepon = data.data.no_telfon
-				this.no_inet = data.data.no_inet
-				this.nama_pelanggan = data.data.nama
-				this.alamat_pelanggan = data.data.alamat;
-				this.sto = data.data.sto;
-
-				if(data.data.nama != ""){
-					this.disabled_nama = "ok"
-				}
-
-				if(data.data.no_inet != ""){
-					this.disabled = "ok"
-				}
+			try{
 				
-			 }
-		     
+				if(data.jenis == 'mitra'){
+					this.nama_mitra = data.data;
+				}else if(data.jenis == 'witel'){
+				   this.witel = data.data;
+				}else if(data.jenis == "sto"){
+					this.sto = data.data;
+				}else if(data.jenis == "no_wo"){
+				   this.no_wo = data.data.no_wo;
+				   this.no_permintaan = data.data.no_wo;
+				//    this.no_telepon = data.data.no_telfon
+				   this.no_inet = data.data.no_telfon
+				   this.nama_pelanggan = data.data.nama
+				   this.alamat_pelanggan = data.data.alamat;
+				   this.sto = data.data.sto;
+				   this.wo_num = data.data.wo_num;
+				   this.crew = data.data.crew;
+
+				   if(data.data.nama != ""){
+					   this.disabled_nama = "ok"
+				   }
+   
+				   if(data.data.no_inet != ""){
+					   this.disabled = "ok"
+				   }
+				   
+				}
+
+			}catch(er){}
+		    
 		});
 		   this.profileModal.present();
 		   
@@ -269,7 +274,10 @@ export class PemakaianPage {
 					'meter_awal': this.meter_awal,
 					'meter_akhir': this.meter_akhir,
 					'sto':this.sto,
+					'wo_num':this.wo_num,
+					'crew':this.crew,
 					'witel':this.witel,
+					'nik_teknisi_2':this.nik_teknisi_2,
 					'bangunan':this.bangunan,
 					'no_kontak_2':this.no_kontak_2,
 					'no_material':this.no_material,
@@ -349,15 +357,18 @@ export class PemakaianPage {
 
    		this.profileModal = this.modalCtrl.create(MapPage, { data: x  });
    		this.profileModal.onDidDismiss(data => {
-		     
-		      if(data.data == 'ODP'){
-		      	this.lat_odp = data.latitude;
-		      	this.lng_odp = data.longitude;
-		      }else{
-		      	this.lat_pel = data.latitude;
-		      	this.lng_pel = data.longitude;
-		      }
-		      console.log("inii"+this.lat_odp+" "+data.data);
+			 
+		
+				if(data.data == 'ODP'){
+					this.lat_odp = data.latitude;
+					this.lng_odp = data.longitude;
+				}else{
+					this.lat_pel = data.latitude;
+					this.lng_pel = data.longitude;
+				}
+
+			
+		    console.log("inii"+this.lat_odp+" "+data.data);
 		     
 		});
    		this.profileModal.present();
@@ -371,6 +382,11 @@ export class PemakaianPage {
         nodeList.item(k).classList.remove('_gmaps_cdv_');
     }
 
+}
+
+logRatingChange(rating){
+	console.log("changed rating: ",rating);
+	// do your stuff
 }
 
 }

@@ -42,9 +42,8 @@ export class MitraPage {
       }else if(this.sto == "mitra"){
         this.string_placeholder = "Mitra";
       }else if(this.sto == "no_wo"){
-        this.string_placeholder = "SC / Inet / Notel";
+        this.string_placeholder = "SC / k-contact / ND";
       }
-	
   }
 
   ionViewDidLoad() {
@@ -55,7 +54,7 @@ export class MitraPage {
     let url = ""
     if(this.sto == "no_wo"){
       //url = this.uri.uri_app_amalia+"/telkom_no_wo.php?no_wo="+this.search+"&nik="+this.nik;
-      url = "http://10.204.100.243/ibooster/telkom_no_wo.php?no_wo="+this.search+"&nik="+this.nik;
+      url = "https://api.telkomakses.co.id/API/amalia/telkom/get_detil_order_from_wo.php?no_wo="+this.search+"&nik="+this.nik;
     }else{
        url = this.uri.uri_api+"master/get_data_all_master_mitra.php?nama="+this.search+"&jenis="+this.sto+"&witel="+this.witel;
     }
@@ -67,8 +66,16 @@ export class MitraPage {
       .timeout(30000)
       .subscribe(data => {
         if(this.sto == "no_wo"){
-          this.json_data_vendor2 = data.data;
-          this.initializeItems();
+          if(data.status){
+
+            this.json_data_vendor2 = data.data;
+            this.initializeItems();
+          }else{
+            alert(data.message)
+            this.json_data_vendor2 = [];
+            this.initializeItems();
+          }
+          
         }else{
           this.json_data_vendor2 = data.mitra;
           this.initializeItems();

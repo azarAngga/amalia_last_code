@@ -3,7 +3,9 @@
  <ion-item>
     <ion-label >{{string_placeholder}}</ion-label>
     <ion-input [(ngModel)]="search" placeholder="..." (keyup.enter)="searchAction()" type="text" value=""></ion-input>
+   
 </ion-item>
+<div style="margin-left: 10px;"><label>SCxxxxx / MYIR-xxxxxxxxxxx / xxxxxxxxx</label></div>
 <button color="light" ion-button full (click)="searchAction()">Search</button>
 <ion-list *ngIf=" sto!= 'no_wo'">
 
@@ -13,7 +15,6 @@
   </ion-item>
 
 </ion-list>
-
 
 <ion-list *ngIf=" sto == 'no_wo'">
 

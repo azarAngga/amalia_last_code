@@ -1,3 +1,32 @@
-page-resume {
+.user {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
 
-}
+  .corner{
+    color: white;
+    border-radius: 25px;
+    background: #c91019;
+    padding: 20px;
+    width: 100px;
+    height: 50px;
+  }
+
+  .corner_edit_text{
+    border-radius: 25px;
+    padding: 5px;
+  }
+
+  .margin_body_left{
+    margin-left: 10px;
+  }
+
+  .margin_body_right{
+    margin-right: 10px;
+  }

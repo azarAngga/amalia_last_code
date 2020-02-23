@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , ModalController ,LoadingController ,AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage' 
 import { SignaturePage } from '../signature/signature'
-import { Http } from '@angular/http'
+import { Http,Headers,RequestOptions } from '@angular/http';
 import { UriProvider } from "../../providers/uri/uri";
 import { PemakaianPage } from "../pemakaian/pemakaian";
 
@@ -38,7 +38,9 @@ export class ResumePage {
   test_use_tv:any = "-";
   tanggal_ttd: any;
   tempat_ttd: any;
-
+  star: any = 0;
+  foto: any = "https://apps.telkomakses.co.id//wimata//photo//crop_95130650.jpg"
+  nama_teknisi: any //= "Azar Dwi angga P."
 
 
   data: any;
@@ -59,6 +61,7 @@ export class ResumePage {
      ){
 
       var date = new Date();
+      
 
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
@@ -89,8 +92,8 @@ export class ResumePage {
             this.type_layanan = "2P [Internet + UseeTv]"
           }else{
             this.type_layanan = "3P"
-
           }
+
         }else if(val.migrasi != undefined  && val.migrasi > 0){
           if(val.migrasi == "1"){
             this.type_layanan = "Infrastruktur"
@@ -146,7 +149,9 @@ export class ResumePage {
 
       this.storage.get('nik').then(val =>{
         this.nama_signature = year+""+month+""+day+""+hours+""+minutes+""+val;
-        this.nik = val
+        // this.nik = val
+        this.nik = "16850353"
+        this.loadNameJabatan()
       })
 
       this.storage.get('data4').then((val)=>{
@@ -289,6 +294,7 @@ actionPut(){
           +"&halaman5="+js5
           +"&halaman6="+js6
           +"&email="+data.email
+          +"&rating="+this.star
           +"&ttd1="+this.nama_signature+"_1_"+this.sum_pelanggan+".png"
           +"&ttd2="+this.nama_signature+"_2_"+this.sum_mitra+".png"
           +"&tempat_ttd="+this.tempat_ttd
@@ -322,6 +328,36 @@ showAlert(x){
     buttons: ['OK']
   });
   alert.present();
+}
+
+logRatingChange(rating){
+  console.log("changed rating: ",rating);
+  this.star = rating;
+  // do your stuff
+}
+
+
+loadNameJabatan(){
+
+  let headers = new Headers({
+    'Content-Type': 'application/x-www-form-urlencoded'
+  });
+
+  let options = new RequestOptions({
+    headers: headers
+  });
+  // TODO: Encode the values using encodeURIComponent().
+  let body = 'nik='+this.nik;
+  console.log('nikName',this.nik);
+  console.log('url',this.uri.uri_api_wimata+'ws_get_data_all_or_one.php');
+  this.http.post(this.uri.uri_api_wimata+'ws_get_data_all_or_one.php',body,options)
+  .map(res =>res.json())
+  .subscribe(data =>{
+    console.log("dari api",data);
+    this.nama_teknisi = data.name
+    this.foto = data.foto
+   
+  });
 }
 
 

@@ -14,6 +14,7 @@
 </ion-header>
 
 <ion-content padding>
+
   <div [ngSwitch]="menu">
   <div *ngSwitchCase="'order'">
      <label ><font size="5" color="red">ORDER</font></label>
@@ -49,7 +50,6 @@
       </ion-card-content>
     </ion-card>
     </div>
-
     <br/>
 
   <ion-item (click)="presentProfileModal('mitra')" *ngIf="view_nama_mitra == 2">
@@ -58,25 +58,25 @@
     
   </ion-item>
 
-  <ion-item  style="display: none;">
+  <ion-item  hidden>
     <ion-label stacked><font color="black">No WO</font></ion-label>
     <ion-input placeholder="Tulis sesuatu" [(ngModel)]="no_wo" style="color:grey"  ></ion-input>
   </ion-item>
 
   <br/>
-   <ion-item style="display: none;">
+   <ion-item hidden>
     <ion-label stacked><font color="black">Witel</font></ion-label>
     <ion-input (click)="presentProfileModal('witel')"  disabled  placeholder="Tulis sesuatu" [(ngModel)]="witel" style="color:grey"></ion-input>
   </ion-item>
 
   <br/>
 
-  <ion-item style="display: none;">
+  <ion-item hidden>
     <ion-label stacked><font color="black">STO</font></ion-label>
     <ion-input (click)="presentProfileModal('sto')"  disabled  placeholder="Tulis sesuatu" [(ngModel)]="sto" style="color:grey"></ion-input>
   </ion-item>
 
-    <ion-label stacked><font color="black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Inet / No SC / Notel</font></ion-label>
+    <ion-label style="margin-top: -15px;" stacked><font color="black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No SC / k-contact / ND (Internet/IPTV/NoTelp)</font></ion-label>
 
    <ion-item>
     <ion-input [(ngModel)]="no_permintaan" value="" disabled  (click)="presentProfileModal('no_wo')" placeholder="Tulis sesuatu"></ion-input>
@@ -132,6 +132,10 @@
       <ion-input  placeholder="Tulis sesuatu" [(ngModel)]="no_telepon"  type="number" style="color:grey"></ion-input>
     </ion-item> -->
 
+    <ion-item>
+      <ion-label stacked><font color="black">Nik Teknisi #2</font></ion-label>
+      <ion-input placeholder="Tulis sesuatu" [(ngModel)]="nik_teknisi_2"  type="number" style="color:grey"></ion-input>
+    </ion-item>
 
    <ion-item *ngIf="disabled !='ok'" >
     <ion-label stacked><font color="black">No Inet </font></ion-label>

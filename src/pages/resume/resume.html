@@ -1,6 +1,5 @@
 <!--
   Generated template for the ResumePage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
@@ -10,7 +9,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <div class="margin_body_left">
+    <br/>
     <div align="center">
         <label><font color="red">LAPORAN PENYELESAIAN PEKERJAAN INSTALASI PASANG BARU/MIGRASI</font></label>
       </div>
@@ -133,9 +134,42 @@
     </ion-card>
 
     <br/>
+    <ion-card width="100%">
+      <ion-card-header>
+        <b>Rate Us</b>
+      </ion-card-header>
+    <ion-card-content>
+
+      <table>
+        <tr>
+          <td><div align="center" style="margin:10px;background-image: url('')" class="user one"><img src="{{foto}}" class="user one"/></div></td>
+          <td>
+            <ionic3-star-rating #rating
+              activeIcon = "ios-star"
+              defaultIcon = "ios-star-outline"
+              activeColor = "#fade41" 
+              defaultColor = "#d9a302"
+              readonly="false"
+              rating="0"
+              fontSize = "32px"
+              (ratingChanged)="logRatingChange($event)">
+              </ionic3-star-rating>
+
+              <div>
+                {{nama_teknisi}}
+              </div>
+
+          </td>
+        </tr>
+      </table>
+
+    </ion-card-content>
+  </ion-card>
+
     <br/>
     <br/>
-    <div align="right"> <input style="width: 115px"  type="text" [(ngModel)]="tempat_ttd" value=""  placeholder="Tulis tempat TTD"/> , {{tanggal_ttd}}</div>
+    <br/>
+    <div align="right"> <input style="width: 115px"  type="text" [(ngModel)]="tempat_ttd" value=""  placeholder="Tempat" class="corner_edit_text"/> , {{tanggal_ttd}}</div>
     <br/>
     <br/>
     <br/>
@@ -159,7 +193,7 @@
 			<td>
 				<div align="left" style="margin-left: -15px">
 				  <br/>
-				  <button class="button" (click)="actionBack()" right>&nbsp;< Back&nbsp;</button>
+				  <button class="corner margin_body_left" (click)="actionBack()" >&nbsp;Back&nbsp;</button>
 				</div>
 			</td>
 			<td width="40%">
@@ -169,7 +203,7 @@
 				<div align="right" style="margin-right: -10px">
 				  <br/>
 				  <img *ngIf="loader_gif == 'on'" src="loader.gif" />
-				  <button *ngIf="loader_gif == 'off'"  class="button" (click)="actionPut()" right>Next</button>
+				  <button class="corner margin_body_right" *ngIf="loader_gif == 'off'" (click)="actionPut()" right>Submit</button>
 				</div>
 			</td>
 		</tr>
@@ -177,4 +211,6 @@
   
   <br/>
   <br/>
+
+  </div>
 </ion-content>

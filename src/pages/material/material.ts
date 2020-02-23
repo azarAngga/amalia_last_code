@@ -7,6 +7,7 @@ import { Http,RequestOptions,Headers } from "@angular/http";
 import { LoadingController } from 'ionic-angular';
 import { Pemakaian2Page } from '../pemakaian2/pemakaian2';
 import * as $ from 'jquery';
+import 'rxjs/add/operator/timeout';
 import { parse } from 'querystring';
 
 /**
@@ -205,6 +206,7 @@ export class MaterialPage {
         console.log(this.uri.uri_api_alista+"amalia_app/material_validation.php?layanan="+parse+"&material="+parse_material+"&nik="+this.nik+"&no_material="+this.no_material)
         this.http.get(this.uri.uri_api_alista+"amalia_app/material_validation.php?layanan="+parse+"&material="+parse_material+"&nik="+this.nik+"&no_material="+this.no_material)
         .map(res => res.json())
+        .timeout(30000)
         .subscribe(data => {
           if(data.status){
             this.storage.set('data3',data_new);
@@ -213,6 +215,9 @@ export class MaterialPage {
             alert(data.message);
           }
           this.loader.dismiss()
+        },error => {
+          alert(error)
+          this.loader.dismiss();
         });
       })
   }

@@ -72,12 +72,12 @@ export class MyApp {
               console.log('tampil', val);
               //this.rootPage = FotoPage;
               // this.rootPage = FotoPage;
-              this.rootPage = MaterialPage;
+              this.rootPage = PemakaianPage;
           }else{
               console.log('login', val);
               //this.rootPage = FotoPage;
-              // this.rootPage = LoginPage;
-              this.rootPage = LoginPage;
+               this.rootPage = LoginPage;
+              //this.rootPage = ResumePage;
           }
     });
   }

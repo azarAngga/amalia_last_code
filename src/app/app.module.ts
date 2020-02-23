@@ -44,6 +44,8 @@ import { HTTP } from '@ionic-native/http';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { StarRatingModule } from 'ionic3-star-rating';
+
 
 
 @NgModule({
@@ -70,6 +72,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     ModalNikBawahanPage
   ],
   imports: [
+    StarRatingModule,
     HttpModule,SignaturePadModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
