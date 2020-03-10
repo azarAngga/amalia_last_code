@@ -436,7 +436,7 @@ migrasi:any;
 
     if(this.psb == '3' || this.psb == '7' || this.migrasi == '8' || this.migrasi == '6' || this.migrasi == '14' || this.migrasi == '16' || this.migrasi == '9' || this.migrasi == '21' || this.migrasi == '3' || this.migrasi == '2' ){
       if(this.img9 == 'icon_camera.png'){
-        alert("Foto Depan ODP tidak boleh kosong")
+        alert("Foto harus lengkap")
         return true
       }
     }

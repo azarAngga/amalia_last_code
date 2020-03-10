@@ -53,14 +53,7 @@ export class MaterialPage {
      public device: Device,
      public navParams: NavParams) {
 
-      this.platform.ready().then(() => {
-        this.storage.get('nik').then((val) => {
-        this.nik = val;
-         console.log("ini niknya"+this.nik);
-         this.loadMaterial(this.nik);
-        });
-      })   
-      this.materialTambahan();   
+      
   }
 
   loadMaterial(nik :any){
@@ -83,7 +76,8 @@ export class MaterialPage {
 
   materialTambahan(){
     this.http.get(this.uri.uri_api_alista+'/amalia_app/get_material_tambahan.php')
-	  	.map(res => res.json())
+      .map(res => res.json())
+      .timeout(10000)
 	  	.subscribe(data => {
         let count = data.length
         
@@ -92,6 +86,8 @@ export class MaterialPage {
           this.arr_satuan_tambahan.push(data[no]['satuan'])
           this.select_designator += "<option value='"+data[no]['designator']+"'>"+data[no]['designator']+"</option>"
         }
+      },error => {
+        // alert("Koneksi terputus mohon coba lagi");
       }); 
   }
 
@@ -119,6 +115,7 @@ export class MaterialPage {
 
       let wo = 'nik='+nik;
       this.http.post(this.uri_api_alista+'ios/get_data_list_material2.php',wo,requestOptions)
+      .timeout(10000)
 	  	.map(res => res.json())
 	  	.subscribe(data => {
 	  		try{
@@ -130,7 +127,10 @@ export class MaterialPage {
 
 	  		}
 	  		this.loader.dismiss();
-	  	}); 
+	  	},error => {
+        alert("Koneksi terputus mohon coba lagi");
+        this.loader.dismiss();
+      }); 
   }
   
   loading(){
@@ -143,6 +143,15 @@ export class MaterialPage {
 
 
   ionViewDidLoad() {
+
+    this.platform.ready().then(() => {
+      this.storage.get('nik').then((val) => {
+      this.nik = val;
+       console.log("ini niknya"+this.nik);
+       this.loadMaterial(this.nik);
+      });
+    })   
+    this.materialTambahan();   
     
   }
 
@@ -199,27 +208,31 @@ export class MaterialPage {
               'material_tambahan_designator': material_tambahan_designator,
               'material_tambahan_volume': material_tambahan_volume
             }
-
-      this.storage.get('data2').then(val =>{
-        var parse =  JSON.stringify(val)
-        var parse_material =  JSON.stringify(data_new)
-        console.log(this.uri.uri_api_alista+"amalia_app/material_validation.php?layanan="+parse+"&material="+parse_material+"&nik="+this.nik+"&no_material="+this.no_material)
-        this.http.get(this.uri.uri_api_alista+"amalia_app/material_validation.php?layanan="+parse+"&material="+parse_material+"&nik="+this.nik+"&no_material="+this.no_material)
-        .map(res => res.json())
-        .timeout(30000)
-        .subscribe(data => {
-          if(data.status){
-            this.storage.set('data3',data_new);
-            this.navCtrl.push(Pemakaian2Page);
-          }else{
-            alert(data.message);
-          }
-          this.loader.dismiss()
-        },error => {
-          alert(error)
-          this.loader.dismiss();
-        });
+      this.storage.get('data').then(val_pelanggan =>{
+          var pelangga_data = val_pelanggan
+          this.storage.get('data2').then(val =>{
+            var parse =  JSON.stringify(val)
+            var parse_material =  JSON.stringify(data_new)
+            var parse_pelanggan =  JSON.stringify(pelangga_data)
+            console.log(this.uri.uri_api_alista+"amalia_app/material_validation.php?pelanggan="+parse_pelanggan+"&layanan="+parse+"&material="+parse_material+"&nik="+this.nik+"&no_material="+this.no_material)
+            this.http.get(this.uri.uri_api_alista+"amalia_app/material_validation.php?pelanggan="+parse_pelanggan+"&layanan="+parse+"&material="+parse_material+"&nik="+this.nik+"&no_material="+this.no_material)
+            .map(res => res.json())
+            .timeout(30000)
+            .subscribe(data => {
+              if(data.status){
+                this.storage.set('data3',data_new);
+                this.navCtrl.push(Pemakaian2Page);
+              }else{
+                alert(data.message);
+              }
+              this.loader.dismiss()
+            },error => {
+              alert("Koneksi terputus mohon coba lagi");
+              this.loader.dismiss();
+            });
+          })
       })
+      
   }
 
   no_row: any = 0
@@ -276,10 +289,8 @@ export class MaterialPage {
                 '<div>'+
                 ' </body>'+
                 '</html>'
-
     );
       
-
       var arr = this.arr_satuan_tambahan;
     
       $('#designator_'+no).change(function(){

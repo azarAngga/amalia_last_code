@@ -126,7 +126,7 @@ export class Pemakaian2Page {
 				alert(data.message);
 				}
 			},error => {
-				alert(error)
+				alert("Koneksi terputus mohon coba lagi");
 				this.loader.dismiss();
 			}
 			

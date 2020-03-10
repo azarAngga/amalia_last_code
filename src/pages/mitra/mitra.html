@@ -1,14 +1,30 @@
 
 <ion-content>
- <ion-item>
-    <ion-label >{{string_placeholder}}</ion-label>
-    <ion-input [(ngModel)]="search" placeholder="..." (keyup.enter)="searchAction()" type="text" value=""></ion-input>
-   
-</ion-item>
-<div style="margin-left: 10px;"><label>SCxxxxx / MYIR-xxxxxxxxxxx / xxxxxxxxx</label></div>
-<button color="light" ion-button full (click)="searchAction()">Search</button>
-<ion-list *ngIf=" sto!= 'no_wo'">
 
+
+<table style="width: 100%;">
+  <tr>
+    <td align="center">
+      <img src="back.png" (click)="dismiss('-')" style="height: 20px;margin: 5px;"/>
+    </td>
+    <td>
+      <ion-item *ngIf=" sto != 'no_wo'">
+        <ion-label >{{string_placeholder}}</ion-label>
+        <ion-input [(ngModel)]="search" placeholder="..." (keyup.enter)="searchAction()" type="text" value=""></ion-input>
+      </ion-item>  
+      <ion-item *ngIf=" sto == 'no_wo'">
+        <ion-label >{{string_placeholder}}</ion-label>
+        <ion-input [(ngModel)]="search" placeholder="..." (keyup.enter)="searchAction()" type="number" value=""></ion-input>
+      </ion-item>      
+    </td>
+  </tr>
+</table>
+
+<!-- <div style="margin-left: 10px;"><label>SCxxxxx</label></div> -->
+<button color="light" ion-button full (click)="searchAction()">Search</button>
+
+
+<ion-list *ngIf=" sto!= 'no_wo'">
   <ion-item  style="background-color:#000066;"  *ngFor="let item of items" (click)="dismiss(item)">		
   <font color="white"><b>{{ item }}</b></font>
   
@@ -18,7 +34,7 @@
 
 <ion-list *ngIf=" sto == 'no_wo'">
 
-  <ion-item  style="background-color:#000066;"  *ngFor="let item of items" (click)="dismiss_wo(item.no_wo,item.no_telfon,item.nama,item.alamat,item.sto)">		
+  <ion-item  style="background-color:#000066;"  *ngFor="let item of items" (click)="dismiss_wo(item.no_wo,item.no_telfon,item.no_inet,item.nama,item.alamat,item.sto)">		
     <font color="white"><b style="text-transform: uppercase;">{{item.nama}} / {{ item.alamat}}</b></font>
   
   </ion-item>

@@ -8,9 +8,11 @@ import { Storage } from '@ionic/storage';
 import { Pemakaian3Page }from '../pemakaian3/pemakaian3';
 import { Http,Headers,RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/timeout';
 import { UriProvider  } from '../../providers/uri/uri';
 import { Device } from '@ionic-native/device';
 import { LoadingController } from 'ionic-angular';
+
 
 /**
  * Generated class for the PemakaianPage page.
@@ -80,7 +82,10 @@ export class PemakaianPage {
 	jumlah_breket_v: any ="";
 	jumlah_klem_ring_v: any ="";
 	jumlah_tiang_telpn_v: any ="";
+
 	disabled: any ="nok";
+	disabled_no_telfon: any ="nok";
+	disabled_alamat_pelanggan: any ="nok";
 	disabled_nama: any ="nok";
 
 	view_nama_mitra: any = 1;
@@ -170,8 +175,8 @@ export class PemakaianPage {
 				}else if(data.jenis == "no_wo"){
 				   this.no_wo = data.data.no_wo;
 				   this.no_permintaan = data.data.no_wo;
-				//    this.no_telepon = data.data.no_telfon
-				   this.no_inet = data.data.no_telfon
+				   this.no_telepon = data.data.no_telfon
+				   this.no_inet = data.data.no_inet
 				   this.nama_pelanggan = data.data.nama
 				   this.alamat_pelanggan = data.data.alamat;
 				   this.sto = data.data.sto;
@@ -180,6 +185,14 @@ export class PemakaianPage {
 
 				   if(data.data.nama != ""){
 					   this.disabled_nama = "ok"
+				   }
+
+				   if(data.data.no_telfon != ""){
+					this.disabled_no_telfon = "ok"
+				   }
+
+				   if(data.data.alamat != ""){
+					this.disabled_alamat_pelanggan = "ok"
 				   }
    
 				   if(data.data.no_inet != ""){
@@ -317,6 +330,7 @@ export class PemakaianPage {
 				let wo = 'nik='+this.nik+"&wo_number="+this.no_wo+"&versi="+this.uri.versi+"&data="+json;
 				console.log(this.uri.uri_api_alista+'ios/put_data_pemakaian_halaman1.php')
 				this.http.post(this.uri.uri_api_alista+'ios/put_data_pemakaian_halaman1.php',wo,requestOptions)
+					.timeout(10000)
 					.map(res => res.json())
 					.subscribe(data => {
 
@@ -327,7 +341,10 @@ export class PemakaianPage {
 							alert(data.message)
 						}
 						this.loader.dismiss();
-					}); 
+					},error => {
+						alert("Koneksi terputus mohon coba lagi");
+						this.loader.dismiss();
+					  }); 
  		// }
  	}
 

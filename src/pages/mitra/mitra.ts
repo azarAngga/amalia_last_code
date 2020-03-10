@@ -42,7 +42,7 @@ export class MitraPage {
       }else if(this.sto == "mitra"){
         this.string_placeholder = "Mitra";
       }else if(this.sto == "no_wo"){
-        this.string_placeholder = "SC / k-contact / ND";
+        this.string_placeholder = "SC";
       }
   }
 
@@ -85,7 +85,7 @@ export class MitraPage {
         this.loader.dismiss();
       	
       },error => {
-				alert(error)
+				alert("Koneksi terputus mohon coba lagi");
 				this.loader.dismiss();
 			});
   }
@@ -124,11 +124,11 @@ export class MitraPage {
    this.viewCtrl.dismiss(data);
  }
 
- dismiss_wo(no_wo: any,no_telfon: any,nama: any,alamat: any,sto : any){
-  let no_inet = ""
-  if( (this.search).substring(0,1,1) == "1" && this.search.length == 12){
+ dismiss_wo(no_wo: any,no_telfon: any,no_inet: any,nama: any,alamat: any,sto : any){
+  // let no_inet = ""
+  if((this.search).substring(0,1,1) == "1" && this.search.length == 12){
     no_inet = this.search
- }
+  }
 
   let isi = {
     no_wo: this.search,

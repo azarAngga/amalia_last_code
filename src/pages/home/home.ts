@@ -82,36 +82,6 @@ export class HomePage {
     this.uri_app_amalia = this.uri.uri_app_amalia;
     this.uri_api_wimata = this.uri.uri_api_wimata;
 
-     this.platform.ready().then(() => {
-
-          this.storage.get('nik').then((val) => {
-          this.setData("oke");
-          this.nik = val;
-          this.http.get(this.uri_api_alista+'ios/get_data_team_leader.php?nik='+this.nik)
-          .map(res => res.json())
-          .subscribe(data => {
-            try{
-              console.log("ini witel",data[0].witel);
-              this.setWitel(data[0].witel);
-              this.loadMenuWithWitel();
-              this.events.publish('menu:tampil', this.pages);
-            }catch(err){
-              console.log(err);
-               this.loadMenu();
-              this.events.publish('menu:tampil', this.pages);
-            }
-              
-          },error =>{
-            
-          });
-
-          this.checkUpdate();
-          this.loadNameJabatan();
-          this.onLoad(this.nik);
-        });
-      
-     })
-    
 	}
 
 
@@ -510,6 +480,38 @@ export class HomePage {
         { title: 'List BA Online', component: BaPage },
         { title: 'Logout', component: LoginPage }
     ];
+  }
+
+  ionViewDidLoad() {
+    this.platform.ready().then(() => {
+
+      this.storage.get('nik').then((val) => {
+      this.setData("oke");
+      this.nik = val;
+      this.http.get(this.uri_api_alista+'ios/get_data_team_leader.php?nik='+this.nik)
+      .map(res => res.json())
+      .subscribe(data => {
+        try{
+          console.log("ini witel",data[0].witel);
+          this.setWitel(data[0].witel);
+          this.loadMenuWithWitel();
+          this.events.publish('menu:tampil', this.pages);
+        }catch(err){
+          console.log(err);
+           this.loadMenu();
+          this.events.publish('menu:tampil', this.pages);
+        }
+          
+      },error =>{
+        
+      });
+  
+      this.checkUpdate();
+      this.loadNameJabatan();
+      this.onLoad(this.nik);
+    });
+  
+  })
   }
 
 }

@@ -60,9 +60,7 @@ export class ResumePage {
      public http: Http
      ){
 
-      var date = new Date();
-      
-
+        var date = new Date();
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
         var day = date.getDate();
@@ -149,8 +147,8 @@ export class ResumePage {
 
       this.storage.get('nik').then(val =>{
         this.nama_signature = year+""+month+""+day+""+hours+""+minutes+""+val;
-        // this.nik = val
-        this.nik = "16850353"
+        this.nik = val
+        // this.nik = "16850353"
         this.loadNameJabatan()
       })
 
@@ -250,7 +248,7 @@ sendPostRequest(data,nama){
   .subscribe(data => {
    this.loader.dismiss();
   }, error => {
-   alert(error);
+   alert("Koneksi terputus mohon coba lagi");
    this.loader.dismiss();
   console.log("Oooops!");
   });

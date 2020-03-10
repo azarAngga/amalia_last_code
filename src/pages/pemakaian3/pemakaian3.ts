@@ -9,6 +9,8 @@ import { AlertController } from 'ionic-angular';
 import * as $ from 'jquery';
 import { UriProvider  } from '../../providers/uri/uri';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/timeout';
+
 
 //declare var $: $;
 //import jQuery from "jquery";
@@ -201,6 +203,7 @@ export class Pemakaian3Page {
     this.loading()
     console.log(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_2);
     this.http.get(this.uri.uri_api_alista+"amalia_app/check_layanan.php?data="+data_2)
+      .timeout(10000)
       .map(res => res.json())
       .subscribe(data => {
         this.loader.dismiss();
@@ -211,6 +214,9 @@ export class Pemakaian3Page {
           alert(data.message);
         }
 
+      },err =>{
+        alert("Koneksi terputus mohon coba lagi");
+        this.loader.dismiss()
       });
   }
 

@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/timeout';
 import { UriProvider  } from '../../providers/uri/uri';
 import { AlertController } from 'ionic-angular';
 import { PemakaianPage } from '../pemakaian/pemakaian';
@@ -192,10 +193,11 @@ export class Pemakaian4Page {
       	this.loader.dismiss();
         console.log("berhasil berhasil uye :"+JSON.stringify(data));
       }, err => {
+        alert("Koneksi terputus mohon coba lagi");
       	this.loader.dismiss();
         console.log("ddd");
         console.log("error",err);
-        alert(err);
+        // alert(err);
       });
   }
 
@@ -312,7 +314,7 @@ export class Pemakaian4Page {
      .subscribe(data => {
       this.loader.dismiss();
      }, error => {
-      alert(error);
+      alert("Koneksi terputus mohon coba lagi");
       this.loader.dismiss();
      console.log("Oooops!");
      });
@@ -325,6 +327,7 @@ export class Pemakaian4Page {
     console.log(ini);   
     this.loading();
     this.http.get(ini)
+      .timeout(10000)
       .map(res => res.json())
       .subscribe(data => {
         this.loader.dismiss();
@@ -333,8 +336,9 @@ export class Pemakaian4Page {
         }else{
           this.showAlert(data.message);
         }
-      },error =>{
-           console.log('error put '+error);
+      },error => {
+        alert("Koneksi terputus mohon coba lagi");
+        this.loader.dismiss();
       });
    }
 
