@@ -62,6 +62,7 @@ export class Pemakaian3Page {
  	other: any;
   atribut: any;
  	other_view: any = 0;
+ 	customer_eksisting: any = 0;
   //atribut: any = 1;
 
   constructor(public navCtrl: NavController,
@@ -253,6 +254,7 @@ export class Pemakaian3Page {
             change_stb: this.change_stb,
             stb_tambahan: this.stb_tambahan,
             plc: this.plc,
+            customer_eksisting: this.customer_eksisting,
             wifi_extender: this.wifi_extender,
             indibox:this.indibox
           }

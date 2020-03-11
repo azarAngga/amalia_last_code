@@ -336,8 +336,32 @@
 			</ion-list>
 		</ion-card-content>
 		</ion-card>
-
 		<br/>
+
+			<!--customer-->
+			<ion-card>
+				<ion-card-header>
+				  Type pelanggan
+				  <hr/>
+				</ion-card-header>
+		  
+				<ion-card-content>
+					<ion-list >
+				  <table width="100%">
+					  <tr>
+						  <td width="50%">
+							<ion-checkbox style="margin-bottom: -3px;" color="green" value="1" [(ngModel)]="customer_eksisting"></ion-checkbox>&nbsp;Customer Eksisting
+							<!-- <ion-radio (click)="tambahanClick('1')" value="1"></ion-radio> Change STB -->
+						  </td>
+						  
+					  </tr>
+					 
+		  
+				  </table>
+				  </ion-list>
+				</ion-card-content>
+		</ion-card>
+		<br/> 
 
 		<!--TAMBAHAN-->
 		<ion-card>
@@ -387,6 +411,7 @@
 				</ion-card-content>
 		</ion-card>
 		<br/>  
+
 		<table>
 			<tr *ngIf="plc == '1'">
 					<td >

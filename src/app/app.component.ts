@@ -72,7 +72,7 @@ export class MyApp {
               console.log('tampil', val);
               //this.rootPage = FotoPage;
               // this.rootPage = FotoPage;
-              this.rootPage = PemakaianPage;
+              this.rootPage = Pemakaian3Page;
           }else{
               console.log('login', val);
               //this.rootPage = FotoPage;
