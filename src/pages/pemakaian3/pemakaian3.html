@@ -339,7 +339,7 @@
 		<br/>
 
 			<!--customer-->
-			<ion-card>
+		<!-- <ion-card hidden>
 				<ion-card-header>
 				  Type pelanggan
 				  <hr/>
@@ -351,7 +351,7 @@
 					  <tr>
 						  <td width="50%">
 							<ion-checkbox style="margin-bottom: -3px;" color="green" value="1" [(ngModel)]="customer_eksisting"></ion-checkbox>&nbsp;Customer Eksisting
-							<!-- <ion-radio (click)="tambahanClick('1')" value="1"></ion-radio> Change STB -->
+							
 						  </td>
 						  
 					  </tr>
@@ -361,7 +361,7 @@
 				  </ion-list>
 				</ion-card-content>
 		</ion-card>
-		<br/> 
+		<br/>  -->
 
 		<!--TAMBAHAN-->
 		<ion-card>
@@ -413,6 +413,59 @@
 		<br/>  
 
 		<table>
+		<tr *ngIf="change_stb == '1'">
+				<td >
+					<b>Change STB</b>
+					<ion-list >
+						<ion-item>
+						<ion-input type="text" [(ngModel)]="change_stb_lama" placeholder="SN STB Lama"></ion-input>
+						</ion-item>
+					</ion-list>
+					
+				</td>
+				<td><br/><br/>
+				<ion-list style="margin-top: -17px">
+					<ion-item>
+					<ion-input type="text" [(ngModel)]="change_stb_baru" placeholder="SN STB Baru"></ion-input>
+					</ion-item>
+				</ion-list>
+				</td>
+			</tr>
+
+		<tr *ngIf="stb_tambahan == '1'">
+				<td >
+					<b>STB Tambahan</b>
+					<button (click)="actionSTBTambahan()" class="button">
+						<ion-icon name="md-barcode"></ion-icon>&nbsp; Scan Barcode
+					</button>
+						
+					</td>
+					<td><br/><br/>
+					<ion-list style="margin-left: 10px">
+						<ion-item>
+						<ion-input type="text" [(ngModel)]="sn_stb_tambahan" placeholder="Tulis sesuatu"></ion-input>
+						</ion-item>
+						</ion-list>
+					</td>
+			</tr>
+
+			<tr *ngIf="indibox == '1'">
+					<td >
+						<b>SN Indibox</b>
+						<button (click)="actionIndibox()" class="button">
+							<ion-icon name="md-barcode"></ion-icon>&nbsp; Scan Barcode
+						</button>
+						
+					</td>
+					<td><br/><br/>
+					<ion-list style="margin-left: 10px">
+						<ion-item>
+						<ion-input type="text" [(ngModel)]="sn_indibox" placeholder="Tulis sesuatu"></ion-input>
+						</ion-item>
+						</ion-list>
+					</td>
+				</tr>
+
 			<tr *ngIf="plc == '1'">
 					<td >
 						<b>SN PLC</b>

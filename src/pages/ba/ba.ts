@@ -97,7 +97,8 @@ export class BaPage {
     this.loading();
     const fileTransfer: FileTransferObject = this.transfer.create();
     var no_w = no_wo.split("_");
-    const url = this.uri.uri_api_alista+'ios/TCPDF/examples/isi_ba_v2.php?no_wo='+no_w[0];
+    const url = this.uri.uri_api_alista+'ios/TCPDF/examples/isi_ba_v3.php?no_wo='+no_w[0];
+    // const url = "https://alista.telkomakses.co.id/amalia/PDF_BA/2020_03_05/20200305502568311159015066.pdf";
     console.log(encodeURI(url));
     fileTransfer.download(encodeURI(url), this.file.externalRootDirectory + no_w[0]+"_"+this.nik+".pdf").then((entry) => { 
           this.fileOpener.open(this.file.externalRootDirectory + no_w[0]+"_"+this.nik+".pdf", 'application/pdf')

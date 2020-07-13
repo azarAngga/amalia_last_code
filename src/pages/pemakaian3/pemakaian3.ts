@@ -38,11 +38,16 @@ export class Pemakaian3Page {
  	internet: any;
  	mac_address: any;
   sn_plc: any;
+  sn_indibox: any;
+  change_stb_baru: any;
+  change_stb_lama: any;
+
   sn_wifi_extender: any;
   psb_before: any= 0;
   migrasi_before: any= 0;
   tambahan_before: any= 0;
   speed_before: any= 0;
+  sn_stb_tambahan: any= 0;
 
   //tambahan
   change_stb: any;
@@ -199,6 +204,29 @@ export class Pemakaian3Page {
     });
   }
 
+  actionIndibox(){
+
+    this.barcodeScanner.scan().then((barcodeData) => {
+      // Success! Barcode data is here
+      this.sn_indibox = barcodeData.text;
+     }, (err) => {
+       alert(err);
+     });
+
+  }
+
+
+  actionSTBTambahan(){
+
+    this.barcodeScanner.scan().then((barcodeData) => {
+      // Success! Barcode data is here
+      this.sn_stb_tambahan = barcodeData.text;
+     }, (err) => {
+       alert(err);
+     });
+
+  }
+
   checkPaket(data_var){
     var data_2 = JSON.stringify(data_var);
     this.loading()
@@ -233,6 +261,7 @@ export class Pemakaian3Page {
           no++;
         }
     }
+
         var data2 = {
             sn_ont:this.sn_ont,
             sn_modem:this.sn_modem,
@@ -256,6 +285,10 @@ export class Pemakaian3Page {
             plc: this.plc,
             customer_eksisting: this.customer_eksisting,
             wifi_extender: this.wifi_extender,
+            sn_indibox: this.sn_indibox,
+            change_stb_baru: this.change_stb_baru,
+            change_stb_lama: this.change_stb_lama,
+            sn_stb_tambahan: this.sn_stb_tambahan,
             indibox:this.indibox
           }
           this.checkPaket(data2);

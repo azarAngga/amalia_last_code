@@ -20,14 +20,14 @@ import { PemakaianPage } from "../pemakaian/pemakaian";
 })
 export class ResumePage {
 
-  sum_pelanggan: any=0;
+  sum_pelanggan: any=1;
   nik: any;
   loader_gif: any = 'off';
   signatureImage1 : any;
   loader: any;
   signatureImage2: any;
-  sum_mitra: any=0;
-  nama_signature: any;
+  sum_mitra: any=1;
+  nama_signature: any = "";
   nama: any;
   no_telp: any;
   alamat: any;
@@ -144,6 +144,7 @@ export class ResumePage {
         }
 
       })
+      // this.nama_signature = year+""+month+""+day+""+hours+""+minutes+"";
 
       this.storage.get('nik').then(val =>{
         this.nama_signature = year+""+month+""+day+""+hours+""+minutes+""+val;
@@ -209,7 +210,7 @@ export class ResumePage {
 
   openSignatureModel1(){
     let modal1 = this.modalController.create(SignaturePage);
-     this.sum_pelanggan++;
+    //  this.sum_pelanggan++;
      modal1.onDidDismiss(data => {
        console.log(data);
        this.loading();
@@ -222,7 +223,7 @@ export class ResumePage {
 
 openSignatureModel2(){
    let modal2 = this.modalController.create(SignaturePage);
-   this.sum_mitra++;
+  //  this.sum_mitra++;
    modal2.onDidDismiss(data =>{
         this.loading();
        this.signatureImage2 = data.signatureImage;
@@ -240,7 +241,7 @@ loading(){
 }
 
 sendPostRequest(data,nama){
-  var link = 'http://alista.telkomakses.co.id/amalia/upload_base64.php';
+  var link = 'https://amalia.telkomakses.co.id/upload_base64.php';
   var myData = JSON.stringify({data: data,nama: nama});
   
   console.log(myData);

@@ -40,7 +40,7 @@ export class FotoPage {
 
  nama_foto: any= "-";
  path: any;
- nik: any = "955139";
+ nik: any = "";
  deg1: any = "90deg";
  nama_file: any;
  isian: any = 'nok';
@@ -134,7 +134,8 @@ migrasi:any;
         this.storage.get('nik').then((val) => {
         	this.nik = val
         	this.showConfirmFoto();
-	  		var date = new Date();
+          
+          var date = new Date();
 
 	        var year = date.getFullYear();
 	        var month = date.getMonth() + 1;
@@ -143,9 +144,10 @@ migrasi:any;
 	        var minutes = date.getMinutes();
 	        var seconds = date.getSeconds();
 	        var millisecond = date.getMilliseconds();
-
+          // this.nama_foto = "ini.png";
 	        this.storage.get('data').then((val) => {
-	            this.data = val;
+              this.data = val;
+              this.nama_foto = val.no_permintaan+"_"+this.nik+".png";
 	          });
 
 	          this.storage.get('data2').then((val) => {
@@ -162,10 +164,7 @@ migrasi:any;
 	            this.data4 = val;
 	          });
 			
-	        this.nama_foto = year+""+month+""+day+""+hours+""+minutes+""+seconds+""+millisecond+"_"+this.nik;
-
 	        this.koordinat();
-
 			 
         })
 
@@ -201,7 +200,7 @@ migrasi:any;
    
 	take(index_foto){
 		let options: CameraOptions = {
-		  quality: 100,
+		  quality: 50,
 			allowEdit: true,
 			saveToPhotoAlbum: true,
 			correctOrientation: true,
@@ -212,14 +211,15 @@ migrasi:any;
 
 		this.camera.getPicture(options).then((imageData) => {
 		 // imageData is either a base64 encoded string or a file URI
-		 // If it's base64 (DATA_URL):
+     // If it's base64 (DATA_URL):
+     this.nama_foto = index_foto+"_"+this.nama_foto
 		 let filename = imageData.substring(imageData.lastIndexOf('/')+1);
     	 let path =  imageData.substring(0,imageData.lastIndexOf('/')+1);
     	 
        this.loading()
     	 this.file.readAsDataURL(path, filename).then((res)=>{
     	 	
-    	 	this.upload(filename,imageData,res,index_foto)
+    	 	this.upload(this.nama_foto,imageData,res,index_foto)
 
     	 	
     	 });
@@ -248,7 +248,7 @@ migrasi:any;
   }
 
   sendPostRequest(data,nama){
-     var link = 'http://alista.telkomakses.co.id/amalia/upload_base64_2.php';
+     var link = 'http://amalia.telkomakses.co.id/upload_base64_2.php';
      var myData = JSON.stringify({data: data,nama: nama});
      
      console.log(myData);
@@ -280,13 +280,14 @@ migrasi:any;
                 nama_ori[index_path-1].indexOf(".pdf") > 0 ||
                 nama_ori[index_path-1].indexOf(".PDF") > 0
                 ){
-                 this.nama_file = nama_ori[index_path-1];
+                  this.nama_file = nama_ori[index_path-1];
+                 //this.nama_file = index_foto+"_"+this.nama_foto
 		    	 let path =  filePath.substring(0,filePath.lastIndexOf('/')+1);
 		    	 
 		    	 this.file.readAsDataURL(path, this.nama_file).then((res)=>{
 		    	 	this.loading()
 		    	 	//this.img1 = res
-		    	 	this.upload(this.nama_file,filePath,res,index_foto)
+		    	 	this.upload(index_foto+"_"+this.nama_foto,filePath,res,index_foto)
 		    	 })
               }else{
                 this.path = "-";
@@ -305,10 +306,10 @@ migrasi:any;
       this.timeout = "nok"
       var options = {
         fileKey: "file",
-        fileName: this.nik+"_"+nama,
+        fileName: nama,
         chunkedMode: false,
         mimeType: "multipart/form-data",
-        params : {'fileName': nama+"_"+this.nik}
+        params : {'fileName': nama}
       };
 
       setTimeout(() => {
@@ -321,7 +322,7 @@ migrasi:any;
 
       }, 20000);
      
-      var url = "https://alista.telkomakses.co.id/amalia/upload_foto.php";
+      var url = "https://amalia.telkomakses.co.id/upload_foto.php";
       const fileTransfer: FileTransferObject = this.transfer.create();
       //Use the FileTransfer to upload the image
       fileTransfer.upload(path, url, options).then(data => {
@@ -333,25 +334,25 @@ migrasi:any;
             this.date_1 = this.getDate()
             this.lat_1 = this.latitude
             this.long_1 = this.longitude
-            this.name_1 = this.nik+"_"+nama
+            this.name_1 = nama
            }else if(index_foto == "2"){
                this.img2 = res
             this.date_2 = this.getDate()
             this.lat_2 = this.latitude
             this.long_2 = this.longitude
-            this.name_2 = this.nik+"_"+nama
+            this.name_2 = nama
            }else if(index_foto == "3"){
                this.img3 = res
             this.date_3 = this.getDate()
             this.lat_3 = this.latitude
             this.long_3 = this.longitude
-            this.name_3 = this.nik+"_"+nama
+            this.name_3 = nama
            }else if(index_foto == "4"){
                this.img4 = res
             this.date_4 = this.getDate()
             this.lat_4 = this.latitude
             this.long_4 = this.longitude
-            this.name_4 = this.nik+"_"+nama
+            this.name_4 = nama
            }else if(index_foto == "5"){
                this.img5 = res
             this.date_5 = this.getDate()
@@ -363,19 +364,19 @@ migrasi:any;
             this.date_6 = this.getDate()
             this.lat_6 = this.latitude
             this.long_6 = this.longitude
-            this.name_6 = this.nik+"_"+nama
+            this.name_6 = nama
            }else if(index_foto == "7"){
                this.img7 = res
             this.date_7 = this.getDate()
             this.lat_7 = this.latitude
             this.long_7 = this.longitude
-            this.name_7 = this.nik+"_"+nama
+            this.name_7 = nama
            }else if(index_foto == "8"){
             this.img8 = res
          this.date_8 = this.getDate()
          this.lat_8 = this.latitude
          this.long_8 = this.longitude
-         this.name_8 = this.nik+"_"+nama
+         this.name_8 = nama
           }else if(index_foto == "9"){
           this.img9 = res
           this.date_9 = this.getDate()
@@ -387,7 +388,7 @@ migrasi:any;
             this.date_10 = this.getDate()
             this.lat_10 = this.latitude
             this.long_10 = this.longitude
-            this.name_10 = this.nik+"_"+nama
+            this.name_10 = nama
           }
 
           this.loader.dismiss(); 
@@ -433,33 +434,33 @@ migrasi:any;
 
 
   showConfirm() {
+    
+    // if(this.psb == '3' || this.psb == '7' || this.migrasi == '8' || this.migrasi == '6' || this.migrasi == '14' || this.migrasi == '16' || this.migrasi == '9' || this.migrasi == '21' || this.migrasi == '3' || this.migrasi == '2' ){
+    //   if(this.img9 == 'icon_camera.png'){
+    //     alert("Foto harus lengkap")
+    //     return true
+    //   }
+    // }
 
-    if(this.psb == '3' || this.psb == '7' || this.migrasi == '8' || this.migrasi == '6' || this.migrasi == '14' || this.migrasi == '16' || this.migrasi == '9' || this.migrasi == '21' || this.migrasi == '3' || this.migrasi == '2' ){
-      if(this.img9 == 'icon_camera.png'){
-        alert("Foto harus lengkap")
-        return true
-      }
-    }
-
-  	if(this.img1 == 'icon_camera.png'){
-  		alert("Foto Depan ODP tidak boleh kosong")
-  	}else if(this.img2 == 'icon_camera.png'){
-  		alert("Foto Dalam ODP tidak boleh kosong")
-  	}else if(this.img3 == 'icon_camera.png'){
-  		alert("Foto Label DC / Precon tidak boleh kosong")
-  	}else if(this.img4 == 'icon_camera.png'){
-  		alert("Foto Hasil Test Redaman di ODP tidak boleh kosong")
-  	}else if(this.img5 == 'icon_camera.png'){
-		alert("Foto DC / Precon ke rumah pelanggan tidak boleh kosong")
-  	}else if(this.img6 == 'icon_camera.png'){
-  		alert("Foto Rumah Pelanggan tidak boleh kosong")
-  	}else if(this.img7 == 'icon_camera.png'){
-		alert("Foto jalur IKR tidak boleh kosong")
-  	}else if(this.img8 == 'icon_camera.png'){
-      alert("Foto ONT tidak boleh kosong")
-    }else if(this.img10 == 'icon_camera.png'){
-       alert("Foto dengan pelanggan tidak boleh kosong")
-    } else{
+  	// if(this.img1 == 'icon_camera.png'){
+  	// 	alert("Foto Depan ODP tidak boleh kosong")
+  	// }else if(this.img2 == 'icon_camera.png'){
+  	// 	alert("Foto Dalam ODP tidak boleh kosong")
+  	// }else if(this.img3 == 'icon_camera.png'){
+  	// 	alert("Foto Label DC / Precon tidak boleh kosong")
+  	// }else if(this.img4 == 'icon_camera.png'){
+  	// 	alert("Foto Hasil Test Redaman di ODP tidak boleh kosong")
+  	// }else if(this.img5 == 'icon_camera.png'){
+		// alert("Foto DC / Precon ke rumah pelanggan tidak boleh kosong")
+  	// }else if(this.img6 == 'icon_camera.png'){
+  	// 	alert("Foto Rumah Pelanggan tidak boleh kosong")
+  	// }else if(this.img7 == 'icon_camera.png'){
+		// alert("Foto jalur IKR tidak boleh kosong")
+  	// }else if(this.img8 == 'icon_camera.png'){
+    //   alert("Foto ONT tidak boleh kosong")
+    // }else if(this.img10 == 'icon_camera.png'){
+    //    alert("Foto dengan pelanggan tidak boleh kosong")
+    // } else{
 
           var data5 = {
 
@@ -510,8 +511,33 @@ migrasi:any;
 
         }
 
+        
+
           this.storage.set('data6',data5);
-          this.navCtrl.push(ResumePage);
+          this.loading()
+          this.storage.get('data2').then(val =>{
+            var parse =  JSON.stringify(val)
+            var data_5 = JSON.stringify(data5);
+            console.log(this.uri.uri_api_alista+"amalia_app/check_foto.php?data="+data_5+"&parse="+parse)
+            this.http.get(this.uri.uri_api_alista+"amalia_app/check_foto.php?data="+data_5+"&parse="+parse)
+            .timeout(10000)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.loader.dismiss();
+                if(data.status == "ok"){
+                  this.navCtrl.push(ResumePage);
+                }else{
+                  alert(data.message);
+                }
+            }, error => {
+              alert("Koneksi terputus mohon coba lagi");
+              this.loader.dismiss();
+              console.log("Oooops!");
+             })
+          })
+        }
+
+          
 
           
     
@@ -547,8 +573,8 @@ migrasi:any;
     //   ]
     // });
     // confirm.present();
-  	}
-  }
+  	// }
+
 
   actionBack(){
 		this.navCtrl.pop();

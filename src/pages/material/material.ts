@@ -114,8 +114,9 @@ export class MaterialPage {
 	  	});
 
       let wo = 'nik='+nik;
-      this.http.post(this.uri_api_alista+'ios/get_data_list_material2.php',wo,requestOptions)
-      .timeout(10000)
+      // let wo = 'nik=15885324';
+      this.http.post(this.uri_api_alista+'ios/get_data_list_material3.php',wo,requestOptions)
+      .timeout(1000000)
 	  	.map(res => res.json())
 	  	.subscribe(data => {
 	  		try{
