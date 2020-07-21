@@ -75,8 +75,8 @@ export class MyApp {
               this.rootPage = PemakaianPage;
           }else{
               console.log('login', val);
-              //this.rootPage = FotoPage;
-               this.rootPage = LoginPage;
+              this.rootPage = FotoPage;
+              //  this.rootPage = LoginPage;
               //this.rootPage = ResumePage;
           }
     });

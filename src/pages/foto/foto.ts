@@ -37,6 +37,7 @@ export class FotoPage {
  img8: any = "icon_camera.png";
  img9: any = "icon_camera.png";
  img10: any = "icon_camera.png";
+ img11: any = "icon_camera.png";
 
  nama_foto: any= "-";
  path: any;
@@ -58,6 +59,7 @@ export class FotoPage {
  lat_8: any;
  lat_9: any;
  lat_10: any;
+ lat_11: any;
 
  long_1: any;
  long_2: any;
@@ -69,6 +71,7 @@ export class FotoPage {
  long_8: any;
  long_9: any;
  long_10: any;
+ long_11: any;
 
  date_1: any;
  date_2: any;
@@ -80,6 +83,7 @@ export class FotoPage {
  date_8: any;
  date_9: any;
  date_10: any;
+ date_11: any;
 
  name_1: any;
  name_2: any;
@@ -91,6 +95,7 @@ export class FotoPage {
  name_8: any;
  name_9: any;
  name_10: any;
+ name_11: any;
 
 data: any;
 data2: any;
@@ -389,6 +394,12 @@ migrasi:any;
             this.lat_10 = this.latitude
             this.long_10 = this.longitude
             this.name_10 = nama
+          }else if(index_foto == "11"){
+            this.img11 = res
+            this.date_11 = this.getDate()
+            this.lat_11 = this.latitude
+            this.long_11 = this.longitude
+            this.name_11 = nama
           }
 
           this.loader.dismiss(); 
@@ -474,6 +485,7 @@ migrasi:any;
             name_8:this.name_8,
             name_9:this.name_9,
             name_10:this.name_10,
+            name_11:this.name_11,
 
             lat_1:this.lat_1,
             lat_2:this.lat_2,
@@ -485,6 +497,7 @@ migrasi:any;
             lat_8:this.lat_8,
             lat_9:this.lat_9,
             lat_10:this.lat_10,
+            lat_11:this.lat_11,
 
             long_1:this.long_1,
             long_2:this.long_2,
@@ -496,6 +509,7 @@ migrasi:any;
             long_8:this.long_8,
             long_9:this.long_9,
             long_10:this.long_10,
+            long_11:this.long_11,
 
             date_1:this.date_1,
             date_2:this.date_2,
@@ -507,6 +521,7 @@ migrasi:any;
             date_8:this.date_8,
             date_9:this.date_9,
             date_10:this.date_10,
+            date_11:this.date_11,
             pilihan:this.pilihan,
 
         }
