@@ -244,27 +244,26 @@
 				<ion-card>
 				  <ion-card-content text-wrap>
 				&nbsp;
-				<img *ngIf="img6 == 'icon_camera.png'" (click)="foto('6')" [src]="img6" style="width: 100px;height: 100px" /> 
-				<img *ngIf="img6 != 'icon_camera.png' && pilihan == '2'" (click)="foto('6')" [src]="img6" style="width: 100px;height: 100px;transform: rotate(0deg);" /> 
-
-					<img *ngIf="img6 != 'icon_camera.png' && pilihan == '1'" (click)="foto('6')" [src]="img6" style="width: 100px;height: 100px" /> 
+				<img *ngIf="img12 == 'icon_camera.png'" (click)="foto('12')" [src]="img12" style="width: 100px;height: 100px" /> 
+				<img *ngIf="img12 != 'icon_camera.png' && pilihan == '2'" (click)="foto('12')" [src]="img12" style="width: 100px;height: 100px;transform: rotate(0deg);" /> 
+				<img *ngIf="img12 != 'icon_camera.png' && pilihan == '1'" (click)="foto('12')" [src]="img12" style="width: 100px;height: 100px" /> 
 				&nbsp;
 				<table *ngIf="isian == 'ok'">
 						<tr>
 							<td>Lat</td>
 							<td>:</td>
-							<td>{{lat_6}}</td>
+							<td>{{lat_12}}</td>
 						</tr>
 						<tr>
 							<td>Long</td>
 							<td>:</td>
-							<td>{{long_6}}</td>
+							<td>{{long_12}}</td>
 						</tr>
 
 						<tr>
 							<td>Date</td>
 							<td>:</td>
-							<td>{{date_6}}</td>
+							<td>{{date_12}}</td>
 						</tr>
 					</table>
 				 </ion-card-content>
@@ -440,8 +439,11 @@
 			</tr>
 		<!-- <tr *ngIf="psb == '3' || psb == '7' || migrasi == '8' || migrasi == '6' || migrasi == '14' || migrasi == '16' || migrasi == '9' || migrasi == '21' || migrasi == '3' || migrasi == '2'  "> -->
 		<tr>	
-			<td  align="center" colspan="2">
+			<td  align="center" >
 				Foto Teknisi Dengan Pelanggan
+			</td>
+			<td  align="center" >
+				Foto Rumah Pelanggan
 			</td>
 		</tr>
 		<!-- <tr *ngIf="psb == '3' || psb == '7' || migrasi == '8' || migrasi == '6' || migrasi == '14' || migrasi == '16' || migrasi == '9' || migrasi == '21' || migrasi == '3' || migrasi == '2'  "> -->
@@ -449,7 +451,7 @@
 			<td colspan="2">&nbsp;</td>
 		</tr>
 		<tr>
-			<td  align="center"  colspan="2">
+			<td  align="center"  >
 
 					<ion-card>
 						<ion-card-content>
@@ -480,9 +482,39 @@
 						</ion-card-content>
 					</ion-card>
 			</td>
+
+			<td  align="center"  >
+
+					<ion-card>
+						<ion-card-content>
+							&nbsp;
+						<img *ngIf="img6 == 'icon_camera.png'" (click)="foto('6')" [src]="img6" style="width: 100px;height: 100px" /> 
+						<img *ngIf="img6 != 'icon_camera.png' && pilihan == '2'" (click)="foto('6')" [src]="img6" style="width: 100px;height: 100px;transform: rotate(0deg);" /> 
+	
+						<img *ngIf="img6 != 'icon_camera.png' && pilihan == '1'" (click)="foto('6')" [src]="img6 " style="width: 100px;height: 100px" /> 
+						&nbsp;
+	
+						<table *ngIf="isian == 'ok'">
+							<tr>
+								<td>Lat</td>
+								<td>:</td>
+								<td>{{lat_6}}</td>
+							</tr>
+							<tr>
+								<td>Long</td>
+								<td>:</td>
+								<td>{{long_6}}</td>
+							</tr>
+							<tr>
+								<td>Date</td>
+								<td>:</td>
+								<td>{{date_6}}</td>
+							</tr>
+						</table>
+						</ion-card-content>
+					</ion-card>
+			</td>
 		</tr>
-
-
 
 	</table>
 

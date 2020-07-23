@@ -73,11 +73,12 @@ export class MyApp {
               //this.rootPage = FotoPage;
               // this.rootPage = FotoPage;
               this.rootPage = PemakaianPage;
+              // this.rootPage = ResumePage;
           }else{
               console.log('login', val);
-              this.rootPage = FotoPage;
-              //  this.rootPage = LoginPage;
-              //this.rootPage = ResumePage;
+              // this.rootPage = FotoPage;
+               this.rootPage = LoginPage;
+              // this.rootPage = ResumePage;
           }
     });
   }
